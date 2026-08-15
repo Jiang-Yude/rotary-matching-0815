@@ -44,14 +44,16 @@ COMMIT=$(gh api -X PUT "repos/$REPO/contents/data.json" --input "$PAYLOAD" --jq 
 echo "✅ 已推送 commit $COMMIT"
 
 echo "⏳ 等 GitHub Pages 生效"
-for i in $(seq 1 20); do
+# 用完整 JSON 解析判斷，不要用 head -c 截斷後 grep：
+# JSON 格式化後 algorithms 在很後面，截斷比對會永遠失敗、誤報沒生效（2026-08-15 實測踩到）
+for i in $(seq 1 24); do
   if curl -s "https://jiang-yude.github.io/rotary-matching-0815/data.json?t=$RANDOM$RANDOM" \
-     | head -c 300 | grep -q '"algorithms"\|"pairs"'; then
+     | python3 -c "import json,sys; d=json.load(sys.stdin); sys.exit(0 if (d.get('algorithms') or d.get('pairs')) else 1)" 2>/dev/null; then
     echo "✅ 線上已生效（約 $((i*5)) 秒）"
     echo "👉 https://jiang-yude.github.io/rotary-matching-0815/"
     exit 0
   fi
   sleep 5
 done
-echo "⚠️ 100 秒內還沒生效。投影畫面不受影響（那份是本機貼的，照投）。"
+echo "⚠️ 120 秒內還沒生效。投影畫面不受影響（那份是本機貼的，照投）。"
 echo "   學員端再等一下重新整理即可。"
