@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>8/15 永續影響力扶輪社 AI 課程｜數位商會體驗活動</title>
+<style>
+  :root{
+    --bg:#faf6f0; --bg2:#f1e7d8; --ink:#3a2e22; --ink2:#6b5a47; --ink3:#8d7c66;
+    --gold:#b5894e; --gold-d:#8c6837; --card:#ffffff; --line:#e2d5bf;
+    --chain:#b5894e; --comp:#5f8a6a; --ref:#5b7fa6; --peer:#c0673e;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* ============ 版面骨架 ============ */
+  .deck{min-height:100vh;display:flex;flex-direction:column;}
+  .slide{display:none;flex:1;padding:clamp(20px,4vh,52px) clamp(16px,4vw,64px) 96px;}
+  .slide.on{display:block;animation:fade .35s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .wrap{max-width:1240px;margin:0 auto;}
+
+  .kicker{font-size:clamp(13px,1.3vw,17px);letter-spacing:3px;color:var(--gold-d);font-weight:800;}
+  h1{font-size:clamp(30px,4.4vw,58px);line-height:1.22;font-weight:800;margin-top:8px;}
+  h2{font-size:clamp(24px,3.1vw,42px);line-height:1.3;font-weight:800;margin-top:6px;}
+  .lead{font-size:clamp(15px,1.5vw,20px);color:var(--ink2);margin-top:14px;max-width:900px;}
+  .sechead{border-bottom:2px solid var(--line);padding-bottom:14px;margin-bottom:clamp(18px,2.6vh,30px);}
+
+  /* ============ 封面 ============ */
+  #s0 .wrap{padding-top:6vh;}
+  .cover-band{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:999px;
+    padding:7px 16px;font-size:clamp(13px,1.2vw,16px);font-weight:700;color:var(--ink2);}
+  .chip b{color:var(--gold-d);}
+  .cover-note{margin-top:30px;font-size:clamp(13px,1.2vw,16px);color:var(--ink3);
+    background:#fbf1dd;border:1px solid var(--gold);border-radius:12px;padding:12px 18px;max-width:900px;font-weight:600;}
+
+  /* ============ 通用卡片與表格 ============ */
+  .grid{display:grid;gap:14px;}
+  .g2{grid-template-columns:repeat(2,1fr);}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:clamp(14px,1.6vw,22px);box-shadow:0 4px 14px rgba(120,90,40,.06);}
+  .card h3{font-size:clamp(16px,1.7vw,22px);font-weight:800;margin-bottom:8px;}
+  .card p{font-size:clamp(13px,1.3vw,17px);color:var(--ink2);}
+
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;
+    box-shadow:0 4px 14px rgba(120,90,40,.06);font-size:clamp(13px,1.25vw,17px);}
+  th{background:#f3e9d8;color:var(--gold-d);font-weight:800;text-align:left;padding:12px 14px;white-space:nowrap;}
+  td{padding:12px 14px;border-top:1px solid #f0e6d5;color:var(--ink2);vertical-align:top;}
+  td.k{color:var(--ink);font-weight:800;white-space:nowrap;}
+  tr:hover td{background:#fdfaf4;}
+
+  /* ============ 議題長條 ============ */
+  .bars{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
+  .bar{display:grid;grid-template-columns:minmax(96px,1fr) 4fr auto;gap:12px;align-items:center;}
+  .bar .nm{font-weight:800;font-size:clamp(13px,1.3vw,17px);text-align:right;color:var(--ink);}
+  .bar .track{height:16px;background:#efe4d1;border-radius:999px;overflow:hidden;}
+  .bar .fill{height:100%;background:linear-gradient(90deg,var(--gold),#d9b174);border-radius:999px;
+    width:0;transition:width .9s cubic-bezier(.6,.05,.2,1);}
+  .bar .n{font-weight:800;color:var(--gold-d);font-size:clamp(13px,1.3vw,17px);min-width:2.4em;}
+
+  /* ============ 配對星圖（自動排版） ============ */
+  .stage{position:relative;width:100%;background:linear-gradient(180deg,#fffdf9,#f6efe2);
+    border:1px solid #ecdfc9;border-radius:20px;overflow:hidden;min-height:340px;}
+  .stage svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+  .node{position:absolute;transform:translate(-50%,-50%);background:#fff;border-radius:13px;
+    padding:6px 10px;text-align:center;border:2px solid #eadfca;z-index:2;
+    box-shadow:0 5px 14px rgba(120,90,40,.13);max-width:150px;}
+  .node .nm{font-size:clamp(12px,1.15vw,15px);font-weight:800;line-height:1.35;}
+  .node .co{font-size:clamp(10px,.95vw,12px);color:var(--ink3);line-height:1.35;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .node.chain{border-color:var(--chain);} .node.comp{border-color:var(--comp);}
+  .node.ref{border-color:var(--ref);} .node.peer{border-color:var(--peer);}
+  .glabel{position:absolute;transform:translate(-50%,-50%);font-size:clamp(11px,1.05vw,14px);
+    font-weight:800;color:#fff;padding:3px 12px;border-radius:999px;z-index:3;white-space:nowrap;}
+
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;font-size:clamp(12px,1.2vw,16px);font-weight:700;}
+  .legend span{display:inline-flex;align-items:center;gap:7px;color:var(--ink2);}
+  .dot{width:12px;height:12px;border-radius:50%;display:inline-block;}
+
+  .tag{display:inline-block;padding:3px 11px;border-radius:999px;font-size:.82em;
+    font-weight:800;color:#fff;white-space:nowrap;}
+  .tag.chain{background:var(--chain);} .tag.comp{background:var(--comp);}
+  .tag.ref{background:var(--ref);} .tag.peer{background:var(--peer);}
+
+  /* ============ 分組卡 ============ */
+  .gcard{border-left:6px solid var(--gold);}
+  .gcard .mem{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;}
+  .gcard .mem span{background:#f6eee0;border-radius:8px;padding:4px 11px;font-weight:800;
+    font-size:clamp(12px,1.2vw,16px);color:var(--ink);}
+  .gcard ul{margin:10px 0 0 18px;font-size:clamp(13px,1.25vw,17px);color:var(--ink2);}
+  .gcard ul li{margin-bottom:5px;}
+
+  /* ============ 口播卡 ============ */
+  .talkcard{background:#fff;border:1px solid var(--line);border-left:8px solid var(--gold);
+    border-radius:16px;padding:clamp(18px,2vw,30px);margin-bottom:16px;
+    box-shadow:0 4px 14px rgba(120,90,40,.07);}
+  .talkcard h3{font-size:clamp(19px,2.2vw,30px);font-weight:800;margin-bottom:14px;}
+  .talkcard ol{margin-left:22px;}
+  .talkcard li{font-size:clamp(15px,1.6vw,23px);line-height:1.75;color:var(--ink);margin-bottom:10px;}
+
+  /* ============ 收尾 ============ */
+  .quote{font-size:clamp(24px,3.4vw,46px);font-weight:800;line-height:1.45;max-width:1000px;}
+  .quote-sub{margin-top:22px;font-size:clamp(14px,1.5vw,20px);color:var(--ink2);max-width:860px;}
+
+  /* ============ 導覽列 ============ */
+  .navbar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(250,246,240,.94);
+    backdrop-filter:blur(8px);border-top:1px solid var(--line);
+    display:flex;align-items:center;gap:10px;padding:9px clamp(10px,2vw,20px);}
+  .navbar .tabs{display:flex;gap:6px;overflow-x:auto;flex:1;scrollbar-width:none;}
+  .navbar .tabs::-webkit-scrollbar{display:none;}
+  .tab{border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:999px;
+    padding:6px 14px;font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap;
+    font-family:inherit;transition:.15s;}
+  .tab:hover{border-color:var(--gold);}
+  .tab.on{background:var(--gold);border-color:var(--gold);color:#fff;}
+  .navbtn{border:1px solid var(--line);background:#fff;border-radius:10px;width:34px;height:34px;
+    font-size:16px;cursor:pointer;color:var(--ink2);font-family:inherit;flex-shrink:0;}
+  .navbtn:hover{border-color:var(--gold);color:var(--gold-d);}
+
+  /* ============ 資料面板 ============ */
+  .panel{position:fixed;inset:0;z-index:90;background:rgba(58,46,34,.55);
+    display:none;align-items:center;justify-content:center;padding:16px;}
+  .panel.on{display:flex;}
+  .pbox{background:#fff;border-radius:18px;width:min(880px,100%);max-height:92vh;overflow:auto;
+    padding:clamp(20px,3vw,32px);}
+  .pbox h3{font-size:22px;font-weight:800;margin-bottom:6px;}
+  .pbox p{font-size:14px;color:var(--ink2);margin-bottom:14px;}
+  .pbox textarea{width:100%;height:290px;border:1px solid var(--line);border-radius:12px;
+    padding:12px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.6;
+    resize:vertical;background:#fdfbf7;color:var(--ink);}
+  .prow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+  .btn{border:0;background:var(--gold);color:#fff;border-radius:10px;padding:11px 20px;
+    font-size:14.5px;font-weight:800;cursor:pointer;font-family:inherit;}
+  .btn:hover{background:var(--gold-d);}
+  .btn.ghost{background:#fff;color:var(--ink2);border:1px solid var(--line);}
+  .btn.ghost:hover{border-color:var(--gold);color:var(--gold-d);}
+  .msg{margin-top:12px;font-size:13.5px;font-weight:800;min-height:1.4em;}
+  .msg.ok{color:#5f8a6a;} .msg.err{color:#c0673e;}
+  .demoflag{position:fixed;top:12px;right:14px;z-index:70;background:#fbf1dd;border:1px solid var(--gold);
+    color:var(--gold-d);border-radius:999px;padding:5px 14px;font-size:12.5px;font-weight:800;}
+
+  @media (max-width:820px){
+    .g2,.g3{grid-template-columns:1fr;}
+    .slide{padding:18px 16px 92px;}
+    .bar{grid-template-columns:minmax(72px,1fr) 3fr auto;}
+    .stage{min-height:420px;}
+  }
+  @media print{.navbar,.panel,.demoflag{display:none;} .slide{display:block!important;page-break-after:always;}}
+</style>
+</head>
+<body>
+
+<div class="demoflag" id="demoflag">範例資料 · 尚未載入現場結果</div>
+
+<div class="deck">
+
+  <!-- 0 封面 -->
+  <section class="slide on" id="s0"><div class="wrap">
+    <div class="kicker" id="c-kicker">8/15 永續影響力扶輪社 AI 課程 · 數位商會體驗活動</div>
+    <h1 id="c-title">今天這個房間，AI 看到了什麼</h1>
+    <div class="lead" id="c-lead"></div>
+    <div class="cover-band" id="c-chips"></div>
+    <div class="cover-note">這是 AI 從各位自己填的公開版介紹整理出來的交流接點，不是合作名單，也不是評分。沒有被點到不代表不適合交流，只是現場時間有限，先挑幾個最容易說明的例子。</div>
+  </div></section>
+
+  <!-- 1 全場分布 -->
+  <section class="slide" id="s1"><div class="wrap">
+    <div class="sechead"><div class="kicker">Part 1</div><h2>今天現場長什麼樣</h2></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>領域</th><th>成員</th><th style="text-align:right">人數</th><th>共同關心的議題</th></tr></thead>
+      <tbody id="d-table"></tbody>
+    </table></div>
+    <h3 style="margin:26px 0 12px;font-size:clamp(17px,1.8vw,23px);font-weight:800;">最常出現的關心議題</h3>
+    <div class="bars" id="d-bars"></div>
+    <div class="card" style="margin-top:22px;"><p id="d-overview"></p></div>
+  </div></section>
+
+  <!-- 2 配對 -->
+  <section class="slide" id="s2"><div class="wrap">
+    <div class="sechead"><div class="kicker">Part 2</div><h2>AI 看到的交流接點</h2></div>
+    <div class="legend" id="p-legend"></div>
+    <div class="stage" id="stage"><svg id="svg" preserveAspectRatio="none"></svg></div>
+    <div class="tablewrap" style="margin-top:22px;"><table>
+      <thead><tr><th>配對</th><th>類型</th><th>為什麼接得起來</th><th>可以聊的話題</th><th>建議第一步</th></tr></thead>
+      <tbody id="p-table"></tbody>
+    </table></div>
+  </div></section>
+
+  <!-- 3 重新分組 -->
+  <section class="slide" id="s3"><div class="wrap">
+    <div class="sechead"><div class="kicker">Part 3</div><h2>如果不照原本桌次，改照題目分</h2></div>
+    <div class="grid g2" id="g-cards"></div>
+  </div></section>
+
+  <!-- 4 三組口播 -->
+  <section class="slide" id="s4"><div class="wrap">
+    <div class="sechead"><div class="kicker">Part 4</div><h2>現場點三組示範</h2></div>
+    <div id="t-cards"></div>
+  </div></section>
+
+  <!-- 5 收尾 -->
+  <section class="slide" id="s5"><div class="wrap" style="padding-top:8vh;">
+    <div class="kicker">收尾</div>
+    <div class="quote" style="margin-top:18px;">它之所以配得出來，<br>是因為每個人的 AI 都先懂了自己的老闆。</div>
+    <div class="quote-sub">今天只用了一段自我介紹，就配出這些接點。如果你的 AI 累積的是一整年的工作紀錄、客戶對話、決策脈絡，它能替你看見的就不只是名片上的產業，而是議題、節奏，跟真正合得起來的合作可能。</div>
+    <div class="cover-note" style="margin-top:34px;" id="e-notes"></div>
+  </div></section>
+
+</div>
+
+<!-- 導覽列 -->
+<div class="navbar">
+  <button class="navbtn" id="prevBtn" title="上一頁">‹</button>
+  <div class="tabs" id="tabs"></div>
+  <button class="navbtn" id="nextBtn" title="下一頁">›</button>
+  <button class="navbtn" id="dataBtn" title="載入現場資料">⚙</button>
+</div>
+
+<!-- 資料面板 -->
+<div class="panel" id="panel"><div class="pbox">
+  <h3>載入現場分析結果</h3>
+  <p>把 AI 產出的 JSON 貼進來按「套用」，整份投影就換成現場真資料。資料只存在這台電腦的瀏覽器裡，不會上傳。</p>
+  <div class="prow" style="margin:0 0 12px;">
+    <button class="btn ghost" id="copyPromptBtn">① 複製「請 AI 輸出 JSON」的指令</button>
+    <button class="btn ghost" id="loadSampleBtn">貼入範例格式參考</button>
+  </div>
+  <textarea id="jsonInput" placeholder="② 把 AI 吐出來的 JSON 整段貼在這裡"></textarea>
+  <div class="prow">
+    <button class="btn" id="applyBtn">③ 套用並投影</button>
+    <button class="btn ghost" id="saveBtn">④ 存一份含資料的 HTML（重整不掉）</button>
+  </div>
+  <div class="prow">
+    <button class="btn ghost" id="copyDataBtn">複製目前資料</button>
+    <button class="btn ghost" id="clearBtn">清除、回到範例資料</button>
+    <button class="btn ghost" id="closeBtn">關閉</button>
+  </div>
+  <div class="msg" id="msg"></div>
+  <p style="margin:14px 0 0;font-size:13px;color:#8d7c66;">套用後資料存在這個瀏覽器分頁裡。投影過程中不要重新整理；真的要保險，按上面第 ④ 顆存一份檔案下來，那一份重整也不會掉。</p>
+</div></div>
+
+<script>
+/* ============================================================
+   現場媒合結果頁 · 資料驅動版
+   資料換掉 = 整頁換掉，不用改程式碼。
+   ============================================================ */
+
+const TYPE={
+  chain:{name:'產業鏈',   color:'#b5894e', desc:'一方的產出正好是另一方的投入'},
+  comp: {name:'兩兩互補', color:'#5f8a6a', desc:'同一群客戶，服務不同，合起來更完整'},
+  ref:  {name:'客群轉介', color:'#5b7fa6', desc:'客群重疊但不競爭，可以互相介紹'},
+  peer: {name:'同業互助', color:'#c0673e', desc:'同一處境，交流方法、分攤成本'}
+};
+
+/* ---------- 給 AI 的輸出指令（現場複製貼給正在做分析的 AI） ---------- */
+const OUTPUT_PROMPT = `請把你剛剛做完的媒合分析，改成下面這個 JSON 格式輸出。只輸出 JSON 本體，前後不要加任何說明文字、不要包程式碼框。
+
+規則：
+- type 只能用四個值：chain（產業鏈）、comp（兩兩互補）、ref（客群轉介）、peer（同業互助）。
+- 選「只想自己看」的人，不可以出現在 pairs、groups、spotlight 裡，distribution 可以只計人數不寫名字。
+- 沒有把握的配對就不要放，寧可少幾組。
+- 全部使用繁體中文。
+
+{
+  "meta": {
+    "kicker": "現場即時分析",
+    "title": "今天這個房間，AI 看到了什麼",
+    "lead": "兩三句話說明這批資料怎麼來的",
+    "chips": ["收到 XX 份", "XX 個領域", "XX 組交流接點"]
+  },
+  "distribution": [
+    {"cat":"領域名稱","people":["稱呼A","稱呼B"],"n":2,"topics":"這一類共同關心什麼"}
+  ],
+  "topics": [ {"name":"議題名稱","n":12} ],
+  "overview": "兩三句話溫和描述全場組成。",
+  "pairs": [
+    {"a":"稱呼A","b":"稱呼B","type":"comp","why":"為什麼接得起來，要看得出是從介紹文字來的","talk":"可以聊的話題","step":"很小很安全的第一步"}
+  ],
+  "groups": [
+    {"name":"組名（正向中性）","members":["稱呼A","稱呼B","稱呼C"],"why":"分組理由","talks":["開聊話題一","開聊話題二"]}
+  ],
+  "spotlight": [
+    {"title":"稱呼A × 稱呼B","lines":["共同點是什麼","可以聊的具體題目","一個安全的第一步"]}
+  ],
+  "notes": "風險提醒與主持人備註，一段文字即可。"
+}`;
+
+/* ---------- 範例資料（尚未載入現場結果時顯示） ---------- */
+const SAMPLE={
+  meta:{kicker:'8/15 永續影響力扶輪社 AI 課程 · 數位商會體驗活動（範例資料）',
+    title:'今天這個房間，AI 看到了什麼',
+    lead:'以下為五位虛構來賓的示意結果，用來確認版面。現場收完表單重跑一次分析，把 JSON 貼進來就會整份換掉。',
+    chips:['收到 5 份','5 個領域','3 組交流接點']},
+  distribution:[
+    {cat:'製造與營運管理',people:['王小明'],n:1,topics:'SOP、品檢紀錄、交期追蹤、接班'},
+    {cat:'教育訓練與知識庫',people:['陳美玲'],n:1,topics:'流程盤點、知識庫、AI 教材'},
+    {cat:'永續與品牌溝通',people:['林志宏'],n:1,topics:'ESG、CSR、地方合作、品牌信任'},
+    {cat:'數位工具導入',people:['張雅婷'],n:1,topics:'CRM、表單自動化、AI 客服摘要'},
+    {cat:'待釐清（不公開點名）',people:['—'],n:1,topics:'資料較短，先作分組參考'}
+  ],
+  topics:[{name:'AI／自動化',n:4},{name:'SOP／知識庫',n:2},{name:'中小企業數位轉型',n:2},{name:'ESG／品牌溝通',n:1}],
+  overview:'這組資料同時有製造現場、知識庫整理、永續品牌與數位工具導入。若只照產業看會很分散，但用「AI 如何幫組織把經驗整理清楚」來看，就出現明確的交流接點。',
+  pairs:[
+    {a:'王小明',b:'陳美玲',type:'comp',
+     why:'一位有製造現場、老師傅經驗與新人訓練需求，一位明確提到流程盤點、教育訓練與知識庫建置。接點在「現場經驗如何被整理成可教的流程」。',
+     talk:'SOP、知識庫、新人訓練、AI 輔助流程整理',
+     step:'先各自說一個最想被標準化、但現在還靠口傳的流程。'},
+    {a:'林志宏',b:'張雅婷',type:'ref',
+     why:'兩人都服務中小企業，一位偏品牌與永續故事，一位偏 CRM 與自動化；客群重疊但不直接競爭，都關心怎麼讓老闆與員工聽得懂。',
+     talk:'中小企業導入語言、品牌信任、AI 工具說明',
+     step:'先交換各自最常遇到的「老闆聽不懂、員工不想用」案例。'},
+    {a:'陳美玲',b:'張雅婷',type:'chain',
+     why:'一位做流程盤點與教育訓練，一位做表單與 CRM 自動化；前者整理需求與教材，後者把流程落到工具，是方法與工具的上下游。',
+     talk:'流程盤點、表單自動化、課後追蹤',
+     step:'選一個低風險流程，討論從教學文件到自動化表單要收哪些欄位。'}
+  ],
+  groups:[
+    {name:'AI 與流程知識庫組',members:['王小明','陳美玲','張雅婷'],
+     why:'三人都提到把流程、經驗或客戶互動整理成可教、可追蹤、可自動化的形式。',
+     talks:['第一個適合交給 AI 整理的流程是什麼？','哪些地方仍需要人判斷，不能直接自動化？']},
+    {name:'永續與導入溝通組',members:['林志宏','張雅婷'],
+     why:'一位擅長永續與品牌語言，一位擅長數位工具導入，都在處理「怎麼讓中小企業聽得懂並願意開始」。',
+     talks:['如何把 AI 或 ESG 講成老闆在意的日常問題？','導入前最需要先建立哪一種信任？']}
+  ],
+  spotlight:[
+    {title:'王小明 × 陳美玲',lines:[
+      '你們不是因為公司看起來像才被放在一起，而是都提到「怎麼把人的經驗整理成可教、可交接的流程」。',
+      '可以聊的是：公司裡哪一個流程最值得先整理成 SOP。',
+      '第一步不用談合作，先各講一個現在還靠老師傅口傳的環節就好。']},
+    {title:'林志宏 × 張雅婷',lines:[
+      '你們都服務中小企業，一個偏品牌與永續溝通，一個偏數位工具導入。',
+      '很適合先交換「老闆和員工真正聽得懂的轉型語言」。',
+      '可以先各講一個最常遇到的導入卡關案例。']},
+    {title:'陳美玲 × 張雅婷',lines:[
+      '一位擅長把流程盤清楚，一位擅長把流程放進表單跟工具裡，比較像方法和工具的接力。',
+      '可以聊：從教學文件到自動化表單，中間要收哪些欄位。',
+      '建議從一個低風險的小流程開始討論就好。']}
+  ],
+  notes:'目前顯示的是範例資料，僅供版面確認。現場投影前請確認：已排除「只想自己看」的人、已刪除客戶名稱與金額、配對理由都看得出來自介紹文字。'
+};
+
+/* ============================================================ */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const KEY='rotary-match-2026-08-15';
+let DATA=SAMPLE, isSample=true;
+
+/* ---------- 渲染 ---------- */
+function render(d){
+  const m=d.meta||{};
+  $('c-kicker').textContent = m.kicker || '現場即時分析';
+  $('c-title').textContent  = m.title  || '今天這個房間，AI 看到了什麼';
+  $('c-lead').textContent   = m.lead   || '';
+  $('c-chips').innerHTML = (m.chips||[]).map(c=>'<div class="chip">'+esc(c)+'</div>').join('');
+  document.title = (m.title||'現場媒合結果') + '｜8/15 讓你的 AI 更懂你';
+
+  /* Part 1 分布 */
+  $('d-table').innerHTML = (d.distribution||[]).map(r=>
+    '<tr><td class="k">'+esc(r.cat)+'</td><td>'+esc((r.people||[]).join('、'))+
+    '</td><td style="text-align:right;font-weight:800;color:#8c6837">'+esc(r.n!=null?r.n:(r.people||[]).length)+
+    '</td><td>'+esc(r.topics)+'</td></tr>').join('') || '<tr><td colspan="4">尚無資料</td></tr>';
+
+  const tp=d.topics||[], mx=Math.max(1,...tp.map(t=>+t.n||0));
+  $('d-bars').innerHTML = tp.map(t=>
+    '<div class="bar"><div class="nm">'+esc(t.name)+'</div><div class="track"><div class="fill" data-w="'+
+    Math.round((+t.n||0)/mx*100)+'"></div></div><div class="n">'+esc(t.n)+'</div></div>').join('');
+  $('d-overview').textContent = d.overview||'';
+
+  /* Part 2 配對表 */
+  $('p-legend').innerHTML = Object.keys(TYPE).map(k=>
+    '<span><i class="dot" style="background:'+TYPE[k].color+'"></i>'+TYPE[k].name+'：'+TYPE[k].desc+'</span>').join('');
+  $('p-table').innerHTML = (d.pairs||[]).map(p=>{
+    const t=TYPE[p.type]||TYPE.comp;
+    return '<tr><td class="k">'+esc(p.a)+' × '+esc(p.b)+'</td><td><span class="tag '+
+      (TYPE[p.type]?p.type:'comp')+'">'+t.name+'</span></td><td>'+esc(p.why)+
+      '</td><td>'+esc(p.talk)+'</td><td>'+esc(p.step)+'</td></tr>';
+  }).join('') || '<tr><td colspan="5">尚無配對資料</td></tr>';
+
+  /* Part 3 分組 */
+  $('g-cards').innerHTML = (d.groups||[]).map(g=>
+    '<div class="card gcard"><h3>'+esc(g.name)+'</h3><div class="mem">'+
+    (g.members||[]).map(x=>'<span>'+esc(x)+'</span>').join('')+'</div><p>'+esc(g.why)+
+    '</p><ul>'+(g.talks||[]).map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul></div>').join('')
+    || '<div class="card"><p>尚無分組資料</p></div>';
+
+  /* Part 4 口播 */
+  $('t-cards').innerHTML = (d.spotlight||[]).map(s=>
+    '<div class="talkcard"><h3>'+esc(s.title)+'</h3><ol>'+
+    (s.lines||[]).map(l=>'<li>'+esc(l)+'</li>').join('')+'</ol></div>').join('')
+    || '<div class="talkcard"><p>尚無口播資料</p></div>';
+
+  $('e-notes').textContent = d.notes||'';
+
+  $('demoflag').style.display = isSample ? 'block' : 'none';
+  drawStage(d);
+  if(cur===1) animateBars();
+}
+
+/* ---------- 配對星圖：任何人數、任何組數都自動排 ---------- */
+function drawStage(d){
+  const stage=$('stage'), svg=$('svg');
+  stage.querySelectorAll('.node,.glabel').forEach(n=>n.remove());
+  svg.innerHTML='';
+  const pairs=(d.pairs||[]).filter(p=>p&&p.a&&p.b);
+  if(!pairs.length){stage.style.height='180px';return;}
+
+  const w=stage.clientWidth||1000;
+  const cols=Math.max(1,Math.min(pairs.length, w<620?1:(w<960?2:3)));
+  const rows=Math.ceil(pairs.length/cols);
+  const cellH=190, padT=34;
+  stage.style.height=(rows*cellH+padT)+'px';
+  /* CSS 的 min-height 可能把畫布撐高，一律以實際高度當座標系，避免連線跟人名對不齊 */
+  const H=stage.clientHeight||(rows*cellH+padT);
+  const rowH=(H-padT)/rows;
+  svg.setAttribute('viewBox','0 0 '+w+' '+H);
+  svg.setAttribute('preserveAspectRatio','none');
+
+  const info=p=>{
+    const key=(d.distribution||[]).find(r=>(r.people||[]).includes(p));
+    return key?key.cat:'';
+  };
+
+  pairs.forEach((p,i)=>{
+    const c=i%cols, r=Math.floor(i/cols);
+    const cx=(c+0.5)*(w/cols), cy=padT+(r+0.5)*rowH;
+    const t=TYPE[p.type]?p.type:'comp', col=TYPE[t].color;
+    const dx=Math.min(105,(w/cols)*0.27);
+
+    /* 連線 */
+    const ln=document.createElementNS('http://www.w3.org/2000/svg','line');
+    ln.setAttribute('x1',cx-dx); ln.setAttribute('y1',cy);
+    ln.setAttribute('x2',cx+dx); ln.setAttribute('y2',cy);
+    ln.setAttribute('stroke',col); ln.setAttribute('stroke-width','3');
+    ln.setAttribute('stroke-linecap','round'); ln.setAttribute('opacity','.75');
+    svg.appendChild(ln);
+
+    /* 類型標籤 */
+    const lab=document.createElement('div');
+    lab.className='glabel'; lab.style.background=col;
+    lab.style.left=cx+'px'; lab.style.top=(cy-46)+'px';
+    lab.textContent=TYPE[t].name;
+    stage.appendChild(lab);
+
+    /* 兩個人 */
+    [[p.a,cx-dx],[p.b,cx+dx]].forEach(([nm,x])=>{
+      const el=document.createElement('div');
+      el.className='node '+t;
+      el.style.left=x+'px'; el.style.top=cy+'px';
+      el.innerHTML='<div class="nm">'+esc(nm)+'</div>'+(info(nm)?'<div class="co">'+esc(info(nm))+'</div>':'');
+      stage.appendChild(el);
+    });
+  });
+}
+
+/* ---------- 分頁 ---------- */
+const TITLES=['封面','全場分布','交流接點','重新分組','點三組','收尾'];
+let cur=0;
+$('tabs').innerHTML=TITLES.map((t,i)=>'<button class="tab'+(i===0?' on':'')+'" data-i="'+i+'">'+t+'</button>').join('');
+function go(i){
+  cur=Math.max(0,Math.min(TITLES.length-1,i));
+  document.querySelectorAll('.slide').forEach((s,k)=>s.classList.toggle('on',k===cur));
+  document.querySelectorAll('.tab').forEach((t,k)=>t.classList.toggle('on',k===cur));
+  window.scrollTo(0,0);
+  if(cur===1) animateBars();
+  if(cur===2) drawStage(DATA);
+}
+function animateBars(){
+  document.querySelectorAll('#d-bars .fill').forEach(f=>{
+    f.style.width='0'; requestAnimationFrame(()=>{setTimeout(()=>{f.style.width=f.dataset.w+'%';},40);});
+  });
+}
+$('tabs').addEventListener('click',e=>{const b=e.target.closest('.tab'); if(b) go(+b.dataset.i);});
+$('prevBtn').onclick=()=>go(cur-1);
+$('nextBtn').onclick=()=>go(cur+1);
+document.addEventListener('keydown',e=>{
+  if($('panel').classList.contains('on')) return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ') {e.preventDefault(); go(cur+1);}
+  if(e.key==='ArrowLeft' ||e.key==='PageUp')  {e.preventDefault(); go(cur-1);}
+  if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
+});
+let resizeT; window.addEventListener('resize',()=>{clearTimeout(resizeT);resizeT=setTimeout(()=>{if(cur===2)drawStage(DATA);},180);});
+
+/* ---------- 資料面板 ---------- */
+const panel=$('panel'), msg=$('msg');
+$('dataBtn').onclick=()=>{panel.classList.add('on');msg.textContent='';};
+$('closeBtn').onclick=()=>panel.classList.remove('on');
+panel.addEventListener('click',e=>{if(e.target===panel)panel.classList.remove('on');});
+
+$('copyPromptBtn').onclick=async()=>{
+  try{ await navigator.clipboard.writeText(OUTPUT_PROMPT);
+    msg.className='msg ok'; msg.textContent='已複製。貼給剛剛跑分析的那個 AI，它會吐出 JSON。';
+  }catch(err){
+    $('jsonInput').value=OUTPUT_PROMPT;
+    msg.className='msg ok'; msg.textContent='瀏覽器擋了自動複製，指令已放進下面的框，請手動全選複製。';
+  }
+};
+$('loadSampleBtn').onclick=()=>{
+  $('jsonInput').value=JSON.stringify(SAMPLE,null,2);
+  msg.className='msg ok'; msg.textContent='這是格式範例，可以照著改，或直接貼 AI 產的 JSON 覆蓋掉。';
+};
+$('applyBtn').onclick=()=>{
+  let raw=$('jsonInput').value.trim();
+  if(!raw){msg.className='msg err';msg.textContent='請先貼上 JSON。';return;}
+  raw=raw.replace(/^```(?:json)?\s*/i,'').replace(/```\s*$/,'').trim();
+  const s=raw.indexOf('{'), e=raw.lastIndexOf('}');
+  if(s>=0&&e>s) raw=raw.slice(s,e+1);
+  try{
+    const d=JSON.parse(raw);
+    if(!d.pairs&&!d.groups&&!d.distribution) throw new Error('缺少 distribution / pairs / groups');
+    DATA=d; isSample=false;
+    try{localStorage.setItem(KEY,JSON.stringify(d));}catch(err){}
+    render(d); panel.classList.remove('on'); go(0);
+  }catch(err){
+    msg.className='msg err';
+    msg.textContent='讀不進去：'+err.message+'。請確認貼的是完整 JSON（大括號開頭結尾），或請 AI 重出一次。';
+  }
+};
+$('copyDataBtn').onclick=async()=>{
+  const txt=JSON.stringify(DATA,null,2);
+  try{ await navigator.clipboard.writeText(txt);
+    msg.className='msg ok'; msg.textContent='已複製目前資料。貼到記事本存著，萬一重整了可以貼回來。';
+  }catch(err){ $('jsonInput').value=txt; msg.className='msg ok';
+    msg.textContent='瀏覽器擋了自動複製，資料已放進上面的框，請手動全選複製。'; }
+};
+
+/* 把目前資料寫死進一份新的 HTML 存下來，重整、換電腦都不會掉 */
+$('saveBtn').onclick=()=>{
+  try{
+    const clone=document.documentElement.cloneNode(true);
+    clone.querySelectorAll('#preset').forEach(n=>n.remove());
+    const sc=document.createElement('script');
+    sc.id='preset';
+    sc.textContent='window.__PRESET__='+JSON.stringify(DATA)+';';
+    clone.querySelector('body').insertBefore(sc, clone.querySelector('body').firstChild);
+    const html='<!DOCTYPE html>\n'+clone.outerHTML;
+    const url=URL.createObjectURL(new Blob([html],{type:'text/html;charset=utf-8'}));
+    const a=document.createElement('a');
+    a.href=url; a.download='現場媒合結果（含資料）.html';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),4000);
+    msg.className='msg ok'; msg.textContent='已存到「下載」資料夾：現場媒合結果（含資料）.html。那一份雙擊就能開，資料已經寫在裡面。';
+  }catch(err){
+    msg.className='msg err'; msg.textContent='存檔失敗：'+err.message+'。請改用「複製目前資料」把 JSON 存到記事本。';
+  }
+};
+
+$('clearBtn').onclick=()=>{
+  try{localStorage.removeItem(KEY);}catch(err){}
+  DATA=SAMPLE; isSample=true; $('jsonInput').value='';
+  render(SAMPLE); msg.className='msg ok'; msg.textContent='已清除現場資料，回到範例。';
+};
+
+/* ---------- 啟動：優先讀上次載入的現場資料 ---------- */
+(function init(){
+  /* 存檔版會把資料寫死在 window.__PRESET__，優先採用 */
+  if(window.__PRESET__){DATA=window.__PRESET__; isSample=false;}
+  else{
+    try{
+      const saved=localStorage.getItem(KEY);
+      if(saved){DATA=JSON.parse(saved); isSample=false;}
+    }catch(err){}
+  }
+  render(DATA);
+  setTimeout(()=>drawStage(DATA),60);
+})();
+</script>
+</body>
+</html>
