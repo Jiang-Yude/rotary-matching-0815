@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://jiangyude.com/cases/digital-chamber-v3.html">
-<meta name="description" content="數位商會 V3 完整提案：以真人會員加 AI 商務分身，示範會前媒合、現場互動、信任評估與 20 人小規模 MVP。">
+<meta name="description" content="2026/08/15 台北永續影響力扶輪社現場媒合結果：14 位參加者，三種算法。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="江江教練 · AI 知識管理">
 <meta property="og:locale" content="zh_TW">
@@ -320,12 +320,9 @@ details.fold .fold-body h4{margin:14px 0 6px;font-size:1.08rem;}
 .mb-dot.seen{box-shadow:0 0 0 5px rgba(160,129,68,.35);}
 </style>
 <!-- tracking:vercel-analytics -->
-<script defer src="/_vercel/insights/script.js"></script>
-<script defer src="/_vercel/speed-insights/script.js"></script>
 <meta name="robots" content="noindex,nofollow" />
 </head>
 <body>
-<a href="/cases.html" style="position:fixed;left:18px;bottom:18px;z-index:1000;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:999px;padding:8px 14px;color:var(--ink-soft);text-decoration:none;box-shadow:var(--shadow);font-size:.9rem;">← 回知識官網案例</a>
 
 <header style="padding:52px 0 0;text-align:center">
   <div class="container">
@@ -438,7 +435,7 @@ const smallGroups=[
    joint:['一個有實際辦出來的大型賽事，一個有訪談與資訊整理的方法','公益最常卡在辦了很多場，卻說不清楚改變了什麼'],
    talk:'活動的成果怎麼記錄，明年接手的人才學得會。',
    step:'挑今年辦過的一場，把成果重寫成三句話。'},
-  {type:'peerlearn',members:['陳家豪','蕭瑛瑱','卓立峰'],
+  {type:'peerlearn',desc:'交流檔案還沒進來，AI 手上只有行為模式四題',members:['陳家豪','蕭瑛瑱','卓立峰'],
    joint:['三位的交流檔案這一欄貼到的是指令或對話連結，不是自己的檔案','AI 只能用你真的給它的東西，這就是今天最重要的一課'],
    talk:'現場直接口頭補：我做哪一行、想認識誰、最近想解決什麼。',
    step:'補完立刻重跑一次，三位就會出現在商會與扶輪這兩套裡。'}
@@ -484,7 +481,7 @@ const fulunGroups=[
    joint:['扶輪最常見的服務方式：不是自己捐，是把對的人牽起來','一位手上是企業主與高資產族群，一位面對醫療院所與國際夥伴'],
    talk:'企業願意支持公益的時候，最在意的是什麼。',
    step:'先講清楚一個具體計畫需要什麼，不要先談錢。'},
-  {type:'peerlearn',title:'現場補檔案',members:['陳家豪','蕭瑛瑱','卓立峰'],
+  {type:'peerlearn',title:'現場補檔案',desc:'交流檔案還沒進來，AI 手上只有行為模式四題',members:['陳家豪','蕭瑛瑱','卓立峰'],
    joint:['三位的交流檔案沒有貼進來，AI 只拿到行為模式四題','扶輪這一套要看職業與服務能力，沒有檔案就配不了'],
    talk:'現場口頭補：我做哪一行、我可以出什麼、我想一起做什麼服務。',
    step:'補完重跑一次，三位就會進到上面四個服務計畫裡。'}
@@ -717,7 +714,7 @@ function openModal(gi){
   let h='<button class="mclose" onclick="closeModal()">✕</button>';
   h+='<span class="mtype" style="background:'+ti.color+'">'+ti.name+'</span>';
   h+='<div class="mtitle">'+g.members.join(' × ')+'</div>';
-  h+='<div class="msub">'+ti.desc+'</div>';
+  h+='<div class="msub">'+(g.desc||ti.desc)+'</div>';
   if(mem.length===2){
     h+='<div class="venn v2"><div class="vcirc cL"></div><div class="vcirc cR"></div><div class="vcols">';
     h+=bubbleCol(mem[0],'left');
