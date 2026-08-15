@@ -1,0 +1,4 @@
+{"meta":{"kicker":"上線流程實測","title":"管線測試","lead":"L","chips":["測試"]},
+ "distribution":[{"cat":"測試領域","people":["甲","乙"],"n":2,"topics":"t"}],
+ "topics":[{"name":"議題",  "n":3}],"overview":"o",
+ "algorithms":[{"key":"biz","pairs":[{"a":"甲","b":"乙","type":"comp","why":"w","talk":"t","step":"s"}],"groups":[],"spotlight":[]}]}
