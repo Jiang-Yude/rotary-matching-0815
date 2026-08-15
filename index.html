@@ -715,16 +715,33 @@ $('clearBtn').onclick=()=>{
 
 /* ---------- 啟動：優先讀上次載入的現場資料 ---------- */
 (function init(){
-  /* 存檔版會把資料寫死在 window.__PRESET__，優先採用 */
-  if(window.__PRESET__){DATA=window.__PRESET__; isSample=false;}
-  else{
-    try{
-      const saved=localStorage.getItem(KEY);
-      if(saved){DATA=JSON.parse(saved); isSample=false;}
-    }catch(err){}
+  /* 優先序：存檔版寫死的資料 → 這台貼過的 → 線上 data.json → 範例 */
+  if(window.__PRESET__){
+    DATA=window.__PRESET__; isSample=false; render(DATA);
+    setTimeout(()=>drawStage(VIEW),60); return;
+  }
+  let saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(err){}
+  if(saved){
+    try{DATA=JSON.parse(saved); isSample=false;}catch(err){}
   }
   render(DATA);
   setTimeout(()=>drawStage(VIEW),60);
+
+  /* 本機沒貼過就去撈線上結果（學員自己開手機看的路徑） */
+  if(!saved){
+    fetch('./data.json?t='+(new Date().getTime()))
+      .then(r=>r.ok?r.json():null)
+      .then(d=>{
+        if(d && (d.algorithms||d.pairs)){
+          DATA=d; isSample=false; algoIdx=0; render(DATA);
+          const f=$('demoflag');
+          f.textContent='已載入現場結果'; f.style.display='block';
+          setTimeout(()=>{f.style.display='none';},3500);
+        }
+      })
+      .catch(()=>{});
+  }
 })();
 </script>
 </body>
