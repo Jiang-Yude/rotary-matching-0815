@@ -81,6 +81,18 @@
   .glabel{position:absolute;transform:translate(-50%,-50%);font-size:clamp(11px,1.05vw,14px);
     font-weight:800;color:#fff;padding:3px 12px;border-radius:999px;z-index:3;white-space:nowrap;}
 
+  /* ============ 算法切換列 ============ */
+  .algobar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
+  .algobtn{border:2px solid var(--line);background:#fff;border-radius:12px;padding:9px 18px;
+    font-size:clamp(13px,1.3vw,17px);font-weight:800;color:var(--ink2);cursor:pointer;
+    font-family:inherit;transition:.18s;}
+  .algobtn:hover{border-color:var(--gold);}
+  .algobtn.on{color:#fff;}
+  .algoq{font-size:clamp(13px,1.3vw,17px);font-weight:700;color:var(--ink2);
+    background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 16px;flex:1;min-width:240px;}
+  .algoq b{color:var(--ink);}
+  @media (max-width:820px){.algoq{flex-basis:100%;}}
+
   .legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;font-size:clamp(12px,1.2vw,16px);font-weight:700;}
   .legend span{display:inline-flex;align-items:center;gap:7px;color:var(--ink2);}
   .dot{width:12px;height:12px;border-radius:50%;display:inline-block;}
@@ -185,7 +197,8 @@
 
   <!-- 2 配對 -->
   <section class="slide" id="s2"><div class="wrap">
-    <div class="sechead"><div class="kicker">Part 2</div><h2>AI 看到的交流接點</h2></div>
+    <div class="sechead"><div class="kicker">Part 2</div><h2 id="p2-title">AI 看到的交流接點</h2></div>
+    <div class="algobar" data-bar></div>
     <div class="legend" id="p-legend"></div>
     <div class="stage" id="stage"><svg id="svg" preserveAspectRatio="none"></svg></div>
     <div class="tablewrap" style="margin-top:22px;"><table>
@@ -197,12 +210,14 @@
   <!-- 3 重新分組 -->
   <section class="slide" id="s3"><div class="wrap">
     <div class="sechead"><div class="kicker">Part 3</div><h2>如果不照原本桌次，改照題目分</h2></div>
+    <div class="algobar" data-bar></div>
     <div class="grid g2" id="g-cards"></div>
   </div></section>
 
   <!-- 4 三組口播 -->
   <section class="slide" id="s4"><div class="wrap">
     <div class="sechead"><div class="kicker">Part 4</div><h2>現場點三組示範</h2></div>
+    <div class="algobar" data-bar></div>
     <div id="t-cards"></div>
   </div></section>
 
@@ -259,6 +274,16 @@ const TYPE={
   peer: {name:'同業互助', color:'#c0673e', desc:'同一處境，交流方法、分攤成本'}
 };
 
+/* ---------- 三種算法：同一批人，換一種思維模型就配出另一種結果 ---------- */
+const ALGOS={
+  biz:   {name:'商會模式', color:'#b5894e', q:'誰的生意接得起來？',
+          params:'需求 × 供給 × 客群重疊 × 可落地第一步'},
+  renji: {name:'人際模式', color:'#5b7fa6', q:'誰跟誰處得來、信得過？',
+          params:'處境相似 × 節奏合拍 × 話題自然 × 信任起點'},
+  fulun: {name:'扶輪模式', color:'#5f8a6a', q:'誰能一起做服務、互相學習？',
+          params:'服務價值 × 職業多樣性 × 公益可行性 × 四大考驗'}
+};
+
 /* ---------- 給 AI 的輸出指令（現場複製貼給正在做分析的 AI） ---------- */
 const OUTPUT_PROMPT = `請把你剛剛做完的媒合分析，改成下面這個 JSON 格式輸出。只輸出 JSON 本體，前後不要加任何說明文字、不要包程式碼框。
 
@@ -267,6 +292,12 @@ const OUTPUT_PROMPT = `請把你剛剛做完的媒合分析，改成下面這個
 - 選「只想自己看」的人，不可以出現在 pairs、groups、spotlight 裡，distribution 可以只計人數不寫名字。
 - 沒有把握的配對就不要放，寧可少幾組。
 - 全部使用繁體中文。
+- algorithms 是三種思維模型跑同一批人的結果。你這一輪只跑了其中一種，就只填那一個，key 用下面對應的值，其他兩種等它們各自跑完再貼。
+
+三種算法的 key 與判斷參數：
+- biz（商會模式）：誰的生意接得起來。需求 × 供給 × 客群重疊 × 可落地第一步。
+- renji（人際模式）：誰跟誰處得來、信得過。處境相似 × 節奏合拍 × 話題自然 × 信任起點。
+- fulun（扶輪模式）：誰能一起做服務、互相學習。服務價值 × 職業多樣性 × 公益可行性 × 四大考驗。
 
 {
   "meta": {
@@ -280,17 +311,24 @@ const OUTPUT_PROMPT = `請把你剛剛做完的媒合分析，改成下面這個
   ],
   "topics": [ {"name":"議題名稱","n":12} ],
   "overview": "兩三句話溫和描述全場組成。",
-  "pairs": [
-    {"a":"稱呼A","b":"稱呼B","type":"comp","why":"為什麼接得起來，要看得出是從介紹文字來的","talk":"可以聊的話題","step":"很小很安全的第一步"}
-  ],
-  "groups": [
-    {"name":"組名（正向中性）","members":["稱呼A","稱呼B","稱呼C"],"why":"分組理由","talks":["開聊話題一","開聊話題二"]}
-  ],
-  "spotlight": [
-    {"title":"稱呼A × 稱呼B","lines":["共同點是什麼","可以聊的具體題目","一個安全的第一步"]}
-  ],
-  "notes": "風險提醒與主持人備註，一段文字即可。"
-}`;
+  "algorithms": [
+    {
+      "key": "biz",
+      "pairs": [
+        {"a":"稱呼A","b":"稱呼B","type":"comp","why":"為什麼接得起來，要看得出是從介紹文字來的","talk":"可以聊的話題","step":"很小很安全的第一步"}
+      ],
+      "groups": [
+        {"name":"組名（正向中性）","members":["稱呼A","稱呼B","稱呼C"],"why":"分組理由","talks":["開聊話題一","開聊話題二"]}
+      ],
+      "spotlight": [
+        {"title":"稱呼A × 稱呼B","lines":["共同點是什麼","可以聊的具體題目","一個安全的第一步"]}
+      ],
+      "notes": "這一套算法的風險提醒與主持人備註。"
+    }
+  ]
+}
+
+如果只有一套結果、不做三算法對比，也可以省略 algorithms，直接把 pairs／groups／spotlight／notes 放在最外層，頁面照樣讀得到。`;
 
 /* ---------- 範例資料（尚未載入現場結果時顯示） ---------- */
 const SAMPLE={
@@ -307,7 +345,9 @@ const SAMPLE={
   ],
   topics:[{name:'AI／自動化',n:4},{name:'SOP／知識庫',n:2},{name:'中小企業數位轉型',n:2},{name:'ESG／品牌溝通',n:1}],
   overview:'這組資料同時有製造現場、知識庫整理、永續品牌與數位工具導入。若只照產業看會很分散，但用「AI 如何幫組織把經驗整理清楚」來看，就出現明確的交流接點。',
-  pairs:[
+  algorithms:[
+  {key:'biz',
+   pairs:[
     {a:'王小明',b:'陳美玲',type:'comp',
      why:'一位有製造現場、老師傅經驗與新人訓練需求，一位明確提到流程盤點、教育訓練與知識庫建置。接點在「現場經驗如何被整理成可教的流程」。',
      talk:'SOP、知識庫、新人訓練、AI 輔助流程整理',
@@ -320,16 +360,16 @@ const SAMPLE={
      why:'一位做流程盤點與教育訓練，一位做表單與 CRM 自動化；前者整理需求與教材，後者把流程落到工具，是方法與工具的上下游。',
      talk:'流程盤點、表單自動化、課後追蹤',
      step:'選一個低風險流程，討論從教學文件到自動化表單要收哪些欄位。'}
-  ],
-  groups:[
+   ],
+   groups:[
     {name:'AI 與流程知識庫組',members:['王小明','陳美玲','張雅婷'],
      why:'三人都提到把流程、經驗或客戶互動整理成可教、可追蹤、可自動化的形式。',
      talks:['第一個適合交給 AI 整理的流程是什麼？','哪些地方仍需要人判斷，不能直接自動化？']},
     {name:'永續與導入溝通組',members:['林志宏','張雅婷'],
      why:'一位擅長永續與品牌語言，一位擅長數位工具導入，都在處理「怎麼讓中小企業聽得懂並願意開始」。',
      talks:['如何把 AI 或 ESG 講成老闆在意的日常問題？','導入前最需要先建立哪一種信任？']}
-  ],
-  spotlight:[
+   ],
+   spotlight:[
     {title:'王小明 × 陳美玲',lines:[
       '你們不是因為公司看起來像才被放在一起，而是都提到「怎麼把人的經驗整理成可教、可交接的流程」。',
       '可以聊的是：公司裡哪一個流程最值得先整理成 SOP。',
@@ -342,18 +382,134 @@ const SAMPLE={
       '一位擅長把流程盤清楚，一位擅長把流程放進表單跟工具裡，比較像方法和工具的接力。',
       '可以聊：從教學文件到自動化表單，中間要收哪些欄位。',
       '建議從一個低風險的小流程開始討論就好。']}
-  ],
-  notes:'目前顯示的是範例資料，僅供版面確認。現場投影前請確認：已排除「只想自己看」的人、已刪除客戶名稱與金額、配對理由都看得出來自介紹文字。'
+   ],
+   notes:'範例資料，僅供版面確認。現場投影前請確認：已排除「只想自己看」的人、已刪除客戶名稱與金額、配對理由都看得出來自介紹文字。'},
+
+  {key:'renji',
+   pairs:[
+    {a:'王小明',b:'張雅婷',type:'peer',
+     why:'一位在製造現場推工具，一位幫小團隊導入系統，兩人卡的是同一件事：東西上線了，人不用。處境相同，講起來不用解釋前提。',
+     talk:'第一線同仁抗拒新工具時，你都怎麼開場',
+     step:'各講一次最近一場「說服失敗」的經過就好，不用給結論。'},
+    {a:'陳美玲',b:'林志宏',type:'peer',
+     why:'一位把資深員工的經驗翻成新人看得懂的教材，一位把 ESG 翻成客戶聽得懂的故事。兩人的工作都是「把內行話翻成外行聽得懂的話」，節奏和職業病都像。',
+     talk:'怎麼判斷一段話對方到底聽懂了沒有',
+     step:'交換一份自己覺得寫得最順的說明稿，互相挑一句看不懂的。'}
+   ],
+   groups:[
+    {name:'翻譯者圈',members:['陳美玲','林志宏'],
+     why:'兩人都在做語言轉換的工作，習慣先問對方懂什麼，再決定怎麼說。相處的節奏接近。',
+     talks:['你最常被誤解的一句專業術語是什麼？','什麼情況你會決定不解釋、直接示範？']},
+    {name:'現場推動圈',members:['王小明','張雅婷'],
+     why:'兩人都在有實體現場、有既有習慣的組織裡推新做法，都習慣先看人再看工具。',
+     talks:['你都先說服誰？主管還是第一線？','推不動的時候你會停多久再試一次？']}
+   ],
+   spotlight:[
+    {title:'王小明 × 張雅婷',lines:[
+      '你們卡在同一個地方：工具都上線了，人不用。',
+      '很適合先聊第一線同仁抗拒的時候，你們各自都怎麼開場。',
+      '第一步不用給對方建議，先各講一次最近一場說服失敗的經過就好。']},
+    {title:'陳美玲 × 林志宏',lines:[
+      '你們的工作其實是同一種：把內行話翻成外行聽得懂的話。',
+      '可以聊：怎麼判斷對方到底聽懂了沒有。',
+      '交換一份自己覺得寫得最順的說明稿，互相挑一句看不懂的就很有收穫。']}
+   ],
+   notes:'人際模式看的是處境與節奏，不看生意規模。配對理由若牽扯到個性評價，投影前請刪掉，只留「都在處理同一件事」這種描述。'},
+
+  {key:'fulun',
+   pairs:[
+    {a:'陳美玲',b:'王小明',type:'comp',
+     why:'一位有教育訓練的方法，一位有真實的製造現場。若要做一個給在地青年的產業體驗或技職培力計畫，一個出場域、一個出教法，湊得成一個可執行的服務。',
+     talk:'能不能合開一場給在地青年的產業體驗日',
+     step:'先各自算一下能出多少時間與場地，不用先談錢。'},
+    {a:'林志宏',b:'張雅婷',type:'comp',
+     why:'一位會講永續故事，一位會把流程數位化。社福單位常缺的正好是這兩樣：說得出來，跟做得下去。兩人職業距離遠，但可以服務同一個對象。',
+     talk:'挑一個在地社福單位，能幫他們做到什麼程度',
+     step:'各推薦一個自己知道、真的需要幫忙的單位。'}
+   ],
+   groups:[
+    {name:'技職培力小隊',members:['王小明','陳美玲'],
+     why:'一個有場域、一個有教法，跨職業互補，可以共同投入一個給年輕人的培力計畫。',
+     talks:['一天的體驗課，最想讓年輕人帶走什麼？','工廠現場要準備到什麼程度才安全？']},
+    {name:'社福數位小隊',members:['林志宏','張雅婷'],
+     why:'一個處理對外溝通，一個處理內部流程，服務對象可以是同一個資源不足的單位。',
+     talks:['社福單位最容易被忽略的是哪一段？','免費幫忙的界線要畫在哪裡才長久？']}
+   ],
+   spotlight:[
+    {title:'王小明 × 陳美玲',lines:[
+      '你們一個有工廠現場，一個有教學方法，職業差很遠，但正好湊得成一件事。',
+      '可以聊：能不能合開一場給在地青年的產業體驗日。',
+      '第一步先各自算一下能出多少時間跟場地就好，不用先談錢。']},
+    {title:'林志宏 × 張雅婷',lines:[
+      '你們一個會把價值講出來，一個會把流程做下去，社福單位缺的常常正好是這兩樣。',
+      '可以聊：挑一個在地單位，能幫他們做到什麼程度。',
+      '各推薦一個自己知道、真的需要幫忙的單位，就是很好的起點。']}
+   ],
+   notes:'扶輪模式優先看服務可行性，不看生意大小。四大考驗要能通過：是否真實、是否公平、能否促進親善友誼、能否兼顧彼此利益。投影時提醒這是交流起點，不是承諾出人出錢。'}
+  ]
 };
 
 /* ============================================================ */
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const KEY='rotary-match-2026-08-15';
-let DATA=SAMPLE, isSample=true;
+let DATA=SAMPLE, isSample=true, algoIdx=0, VIEW=SAMPLE;
+
+/* ---------- 資料正規化：單套格式也吃得下，一律轉成 algorithms 陣列 ---------- */
+function normalize(d){
+  d=d||{};
+  let list=Array.isArray(d.algorithms)?d.algorithms.slice():[];
+  if(!list.length){
+    list=[{key:d.key||'biz', pairs:d.pairs, groups:d.groups, spotlight:d.spotlight, notes:d.notes}];
+  }
+  list=list.filter(a=>a && (a.pairs||a.groups||a.spotlight));
+  if(!list.length) list=[{key:'biz',pairs:[],groups:[],spotlight:[]}];
+  /* 照 biz → renji → fulun 的順序排，未知 key 排最後 */
+  const order=Object.keys(ALGOS);
+  list.sort((a,b)=>{
+    const ia=order.indexOf(a.key), ib=order.indexOf(b.key);
+    return (ia<0?99:ia)-(ib<0?99:ib);
+  });
+  d.algorithms=list;
+  return d;
+}
+const algoMeta=a=>ALGOS[a.key]||{name:a.name||'媒合結果',color:'#b5894e',q:a.q||'',params:a.params||''};
+
+/* ---------- 算法切換列（Part 2/3/4 共用） ---------- */
+function renderBars(d){
+  const list=d.algorithms;
+  document.querySelectorAll('[data-bar]').forEach(bar=>{
+    /* 只有一套結果就不需要切換列 */
+    if(list.length<2){bar.style.display='none';return;}
+    bar.style.display='';
+    const cur=algoMeta(list[algoIdx]);
+    bar.innerHTML = list.map((a,i)=>{
+      const m=algoMeta(a);
+      return '<button class="algobtn'+(i===algoIdx?' on':'')+'" data-i="'+i+'"'+
+        (i===algoIdx?' style="background:'+m.color+';border-color:'+m.color+'"':'')+'>'+esc(m.name)+'</button>';
+    }).join('') + '<div class="algoq"><b>'+esc(cur.q)+'</b>'+(cur.params?'　'+esc(cur.params):'')+'</div>';
+  });
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.algobtn'); if(!b) return;
+  algoIdx=+b.dataset.i; render(DATA);
+  if(cur===1) animateBars();
+});
 
 /* ---------- 渲染 ---------- */
 function render(d){
+  d=normalize(d);
+  if(algoIdx>=d.algorithms.length) algoIdx=0;
+  const A=d.algorithms[algoIdx], AM=algoMeta(A);
+  renderBars(d);
+  $('p2-title').textContent = d.algorithms.length>1 && ALGOS[A.key]
+    ? AM.name+'看到的交流接點' : 'AI 看到的交流接點';
+  /* VIEW＝攤平成單套的當前視圖，drawStage 與重繪都用它 */
+  VIEW=Object.assign({},d,{pairs:A.pairs,groups:A.groups,spotlight:A.spotlight,notes:A.notes||d.notes});
+  renderBody(VIEW);
+}
+
+function renderBody(d){
   const m=d.meta||{};
   $('c-kicker').textContent = m.kicker || '現場即時分析';
   $('c-title').textContent  = m.title  || '今天這個房間，AI 看到了什麼';
@@ -469,7 +625,7 @@ function go(i){
   document.querySelectorAll('.tab').forEach((t,k)=>t.classList.toggle('on',k===cur));
   window.scrollTo(0,0);
   if(cur===1) animateBars();
-  if(cur===2) drawStage(DATA);
+  if(cur===2) drawStage(VIEW);
 }
 function animateBars(){
   document.querySelectorAll('#d-bars .fill').forEach(f=>{
@@ -485,7 +641,7 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft' ||e.key==='PageUp')  {e.preventDefault(); go(cur-1);}
   if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
 });
-let resizeT; window.addEventListener('resize',()=>{clearTimeout(resizeT);resizeT=setTimeout(()=>{if(cur===2)drawStage(DATA);},180);});
+let resizeT; window.addEventListener('resize',()=>{clearTimeout(resizeT);resizeT=setTimeout(()=>{if(cur===2)drawStage(VIEW);},180);});
 
 /* ---------- 資料面板 ---------- */
 const panel=$('panel'), msg=$('msg');
@@ -514,7 +670,7 @@ $('applyBtn').onclick=()=>{
   try{
     const d=JSON.parse(raw);
     if(!d.pairs&&!d.groups&&!d.distribution) throw new Error('缺少 distribution / pairs / groups');
-    DATA=d; isSample=false;
+    DATA=d; isSample=false; algoIdx=0;
     try{localStorage.setItem(KEY,JSON.stringify(d));}catch(err){}
     render(d); panel.classList.remove('on'); go(0);
   }catch(err){
@@ -553,7 +709,7 @@ $('saveBtn').onclick=()=>{
 
 $('clearBtn').onclick=()=>{
   try{localStorage.removeItem(KEY);}catch(err){}
-  DATA=SAMPLE; isSample=true; $('jsonInput').value='';
+  DATA=SAMPLE; isSample=true; algoIdx=0; $('jsonInput').value='';
   render(SAMPLE); msg.className='msg ok'; msg.textContent='已清除現場資料，回到範例。';
 };
 
@@ -568,7 +724,7 @@ $('clearBtn').onclick=()=>{
     }catch(err){}
   }
   render(DATA);
-  setTimeout(()=>drawStage(DATA),60);
+  setTimeout(()=>drawStage(VIEW),60);
 })();
 </script>
 </body>
