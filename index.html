@@ -3,786 +3,784 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-<title>8/15 永續影響力扶輪社 AI 課程｜數位商會體驗活動</title>
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://jiangyude.com/cases/digital-chamber-v3.html">
+<meta name="description" content="數位商會 V3 完整提案：以真人會員加 AI 商務分身，示範會前媒合、現場互動、信任評估與 20 人小規模 MVP。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="江江教練 · AI 知識管理">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="數位商會 V3：完整提案｜江江教練">
+<meta property="og:description" content="以真人會員加 AI 商務分身，示範會前媒合、現場互動、信任評估與 20 人小規模 MVP。">
+<meta property="og:url" content="https://jiangyude.com/cases/digital-chamber-v3.html">
+<meta property="og:image" content="https://jiangyude.com/images/intro-jiang.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="數位商會 V3：完整提案｜江江教練">
+<meta name="twitter:description" content="真人會員 × AI 商務分身的數位商會完整提案與 20 人媒合模擬。">
+<meta name="twitter:image" content="https://jiangyude.com/images/intro-jiang.png">
+<title>今天這個房間，AI 看到了什麼｜2026/08/15 台北永續影響力扶輪社</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Caveat:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
 <style>
-  :root{
-    --bg:#faf6f0; --bg2:#f1e7d8; --ink:#3a2e22; --ink2:#6b5a47; --ink3:#8d7c66;
-    --gold:#b5894e; --gold-d:#8c6837; --card:#ffffff; --line:#e2d5bf;
-    --chain:#b5894e; --comp:#5f8a6a; --ref:#5b7fa6; --peer:#c0673e;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html,body{height:100%;}
-  body{
-    font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
-    color:var(--ink);background:var(--bg);line-height:1.7;
-    -webkit-font-smoothing:antialiased;
-  }
-  /* ============ 版面骨架 ============ */
-  .deck{min-height:100vh;display:flex;flex-direction:column;}
-  .slide{display:none;flex:1;padding:clamp(20px,4vh,52px) clamp(16px,4vw,64px) 96px;}
-  .slide.on{display:block;animation:fade .35s ease;}
-  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
-  .wrap{max-width:1240px;margin:0 auto;}
+:root{
+  --bg:#fefcf8; --bg-soft:#faf5ec; --paper:#ffffff;
+  --ink:#1a1612; --ink-soft:#3a342d; --ink-faint:#6a635a;
+  --line:#d8cdb8; --line-soft:#e8dfc9;
+  --c-coral:#a9744a; --c-peach:#c08a55; --c-mint:#4d9c7d; --c-sky:#5689b8;
+  --c-lavender:#8674b2; --c-sand:#a08144; --c-sage:#5f7553; --c-rose:#b85675;
+  --shadow:0 8px 24px rgba(107,74,42,.08);
+  --shadow-strong:0 18px 44px rgba(107,74,42,.16);
+  --radius-md:14px; --radius-lg:22px; --radius-xl:28px; --radius-pill:999px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;font-size:19px;line-height:1.75;color:var(--ink);background:var(--bg);}
+.serif{font-family:'Cormorant Garamond','Noto Sans TC',serif;}
+.hand{font-family:'Caveat',cursive;}
+.container{max-width:1180px;margin:0 auto;padding:0 32px;}
+section{padding:88px 0;}
+h1,h2,h3{font-family:'Cormorant Garamond','Noto Sans TC',serif;font-weight:600;line-height:1.3;}
+.eyebrow{font-family:'Caveat',cursive;font-size:1.55rem;color:var(--c-sand);margin-bottom:12px;}
+.section-title{font-size:2.6rem;margin-bottom:14px;}
+.section-sub{color:var(--ink-faint);max-width:720px;margin-bottom:44px;}
+.italic{font-style:italic;color:var(--c-coral);}
 
-  .kicker{font-size:clamp(13px,1.3vw,17px);letter-spacing:3px;color:var(--gold-d);font-weight:800;}
-  h1{font-size:clamp(30px,4.4vw,58px);line-height:1.22;font-weight:800;margin-top:8px;}
-  h2{font-size:clamp(24px,3.1vw,42px);line-height:1.3;font-weight:800;margin-top:6px;}
-  .lead{font-size:clamp(15px,1.5vw,20px);color:var(--ink2);margin-top:14px;max-width:900px;}
-  .sechead{border-bottom:2px solid var(--line);padding-bottom:14px;margin-bottom:clamp(18px,2.6vh,30px);}
+/* nav */
+nav.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(254,252,248,.92);border-bottom:1px solid var(--line-soft);}
+nav.top .container{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.brand{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;}
+.brand .hand{color:var(--c-coral);font-size:1.5rem;}
+.nav-links{display:flex;gap:22px;list-style:none;font-size:1rem;}
+.nav-links a{color:var(--ink-soft);text-decoration:none;}
+.nav-links a:hover{color:var(--c-coral);}
+@media(max-width:860px){.nav-links{display:none;}}
 
-  /* ============ 封面 ============ */
-  #s0 .wrap{padding-top:6vh;}
-  .cover-band{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;}
-  .chip{background:#fff;border:1px solid var(--line);border-radius:999px;
-    padding:7px 16px;font-size:clamp(13px,1.2vw,16px);font-weight:700;color:var(--ink2);}
-  .chip b{color:var(--gold-d);}
-  .cover-note{margin-top:30px;font-size:clamp(13px,1.2vw,16px);color:var(--ink3);
-    background:#fbf1dd;border:1px solid var(--gold);border-radius:12px;padding:12px 18px;max-width:900px;font-weight:600;}
+/* hero */
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--bg) 0%,var(--bg-soft) 100%);padding:110px 0 96px;}
+.watercolor{position:absolute;border-radius:50%;filter:blur(60px);opacity:.35;animation:drift 14s ease-in-out infinite alternate;}
+.wc-coral{width:420px;height:420px;background:var(--c-coral);top:-120px;right:-80px;}
+.wc-peach{width:340px;height:340px;background:var(--c-peach);bottom:-140px;left:-60px;animation-delay:3s;}
+.wc-sand{width:260px;height:260px;background:var(--c-sand);top:40%;left:38%;opacity:.18;animation-delay:6s;}
+@keyframes drift{from{transform:translate(0,0) scale(1);}to{transform:translate(30px,-24px) scale(1.08);}}
+.hero .container{position:relative;max-width:900px;text-align:center;}
+.hero h1{font-size:3.6rem;margin-bottom:22px;}
+@media(max-width:720px){.hero h1{font-size:2.4rem;}}
+.hero .lead{font-size:1.3rem;color:var(--ink-soft);margin-bottom:14px;}
+.hero .lead strong{color:var(--ink);}
+.pills{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:26px 0 34px;}
+.pill{border:1.5px solid var(--line);border-radius:var(--radius-pill);padding:7px 20px;font-size:1rem;background:var(--paper);color:var(--ink-soft);}
+.pill b{color:var(--c-coral);font-weight:700;}
+.btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.button{display:inline-block;padding:12px 26px;border:1.5px solid var(--ink);border-radius:var(--radius-pill);background:var(--paper);color:var(--ink);text-decoration:none;font-weight:500;transition:.25s;}
+.button:hover{background:var(--c-coral);border-color:var(--c-coral);color:#fff;transform:translateY(-2px);box-shadow:var(--shadow);}
+.button.ghost{border-color:var(--line);color:var(--ink-soft);}
+.fineprint{margin-top:26px;font-size:1rem;color:var(--ink-faint);}
 
-  /* ============ 通用卡片與表格 ============ */
-  .grid{display:grid;gap:14px;}
-  .g2{grid-template-columns:repeat(2,1fr);}
-  .g3{grid-template-columns:repeat(3,1fr);}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
-    padding:clamp(14px,1.6vw,22px);box-shadow:0 4px 14px rgba(120,90,40,.06);}
-  .card h3{font-size:clamp(16px,1.7vw,22px);font-weight:800;margin-bottom:8px;}
-  .card p{font-size:clamp(13px,1.3vw,17px);color:var(--ink2);}
+/* cards */
+.grid{display:grid;gap:24px;}
+.grid.c3{grid-template-columns:repeat(3,1fr);}
+.grid.c2{grid-template-columns:repeat(2,1fr);}
+@media(max-width:900px){.grid.c3,.grid.c2{grid-template-columns:1fr;}}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-xl);padding:34px 30px;position:relative;overflow:hidden;transition:.3s;}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-strong);border-color:var(--c-sand);}
+.card::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent,var(--c-coral));}
+.card h3{font-size:1.5rem;margin-bottom:10px;}
+.card p{color:var(--ink-soft);font-size:1.02rem;}
+.card .hand{font-size:1.5rem;color:var(--accent,var(--c-coral));display:block;margin-bottom:6px;}
 
-  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;
-    box-shadow:0 4px 14px rgba(120,90,40,.06);font-size:clamp(13px,1.25vw,17px);}
-  th{background:#f3e9d8;color:var(--gold-d);font-weight:800;text-align:left;padding:12px 14px;white-space:nowrap;}
-  td{padding:12px 14px;border-top:1px solid #f0e6d5;color:var(--ink2);vertical-align:top;}
-  td.k{color:var(--ink);font-weight:800;white-space:nowrap;}
-  tr:hover td{background:#fdfaf4;}
+/* answer strip */
+.strip{background:var(--bg-soft);border:1px solid var(--line-soft);border-radius:var(--radius-lg);padding:26px 34px;margin-top:36px;font-size:1.15rem;text-align:center;}
+.strip b{color:var(--c-coral);}
 
-  /* ============ 議題長條 ============ */
-  .bars{display:flex;flex-direction:column;gap:10px;margin-top:4px;}
-  .bar{display:grid;grid-template-columns:minmax(96px,1fr) 4fr auto;gap:12px;align-items:center;}
-  .bar .nm{font-weight:800;font-size:clamp(13px,1.3vw,17px);text-align:right;color:var(--ink);}
-  .bar .track{height:16px;background:#efe4d1;border-radius:999px;overflow:hidden;}
-  .bar .fill{height:100%;background:linear-gradient(90deg,var(--gold),#d9b174);border-radius:999px;
-    width:0;transition:width .9s cubic-bezier(.6,.05,.2,1);}
-  .bar .n{font-weight:800;color:var(--gold-d);font-size:clamp(13px,1.3vw,17px);min-width:2.4em;}
+/* flow */
+.flow-wrap{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-xl);box-shadow:var(--shadow);overflow:hidden;}
+.flow-tabs{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line-soft);}
+.flow-tab{padding:20px 12px;text-align:center;cursor:pointer;border-bottom:4px solid transparent;transition:.3s;background:var(--bg-soft);}
+.flow-tab .ph{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--ink-faint);display:block;}
+.flow-tab .tt{font-weight:700;font-size:1.05rem;}
+.flow-tab.active{background:var(--paper);border-bottom-color:var(--c-coral);}
+.flow-tab.active .ph{color:var(--c-coral);}
+.flow-body{padding:42px 44px;min-height:320px;}
+@media(max-width:720px){.flow-body{padding:28px 22px;}}
+.flow-panel{display:none;animation:fadeUp .5s ease;}
+.flow-panel.active{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center;}
+@media(max-width:860px){.flow-panel.active{grid-template-columns:1fr;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+.flow-panel h3{font-size:1.7rem;margin-bottom:12px;}
+.flow-panel ul{list-style:none;}
+.flow-panel li{padding:7px 0 7px 30px;position:relative;color:var(--ink-soft);}
+.flow-panel li::before{content:"✦";position:absolute;left:4px;color:var(--c-coral);}
+.flow-progress{height:4px;background:var(--line-soft);}
+.flow-progress i{display:block;height:100%;width:0;background:var(--c-coral);transition:width .1s linear;}
 
-  /* ============ 配對星圖（自動排版） ============ */
-  .stage{position:relative;width:100%;background:linear-gradient(180deg,#fffdf9,#f6efe2);
-    border:1px solid #ecdfc9;border-radius:20px;overflow:hidden;min-height:340px;}
-  .stage svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
-  .node{position:absolute;transform:translate(-50%,-50%);background:#fff;border-radius:13px;
-    padding:6px 10px;text-align:center;border:2px solid #eadfca;z-index:2;
-    box-shadow:0 5px 14px rgba(120,90,40,.13);max-width:150px;}
-  .node .nm{font-size:clamp(12px,1.15vw,15px);font-weight:800;line-height:1.35;}
-  .node .co{font-size:clamp(10px,.95vw,12px);color:var(--ink3);line-height:1.35;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .node.chain{border-color:var(--chain);} .node.comp{border-color:var(--comp);}
-  .node.ref{border-color:var(--ref);} .node.peer{border-color:var(--peer);}
-  .glabel{position:absolute;transform:translate(-50%,-50%);font-size:clamp(11px,1.05vw,14px);
-    font-weight:800;color:#fff;padding:3px 12px;border-radius:999px;z-index:3;white-space:nowrap;}
+/* flow visuals */
+.vis{display:flex;align-items:center;justify-content:center;min-height:220px;}
+.vcard{width:120px;border-radius:var(--radius-md);border:1.5px solid var(--line);background:var(--bg-soft);padding:12px;text-align:center;font-size:1rem;box-shadow:var(--shadow);}
+.vcard .avatar{width:44px;height:44px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.05rem;}
+.spark{font-family:'Caveat',cursive;font-size:2rem;color:var(--c-coral);}
+.pulse{animation:pulse 1.6s ease-in-out infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.07);}}
+.slide-l{animation:slideL 2.6s ease-in-out infinite alternate;}
+.slide-r{animation:slideR 2.6s ease-in-out infinite alternate;}
+@keyframes slideL{from{transform:translateX(-26px);}to{transform:translateX(6px);}}
+@keyframes slideR{from{transform:translateX(26px);}to{transform:translateX(-6px);}}
+.scorebubble{background:var(--c-coral);color:#fff;border-radius:var(--radius-pill);padding:6px 18px;font-weight:700;font-size:1.1rem;margin:0 14px;animation:pop 2.6s ease-in-out infinite;}
+@keyframes pop{0%,35%{opacity:0;transform:scale(.6);}55%,90%{opacity:1;transform:scale(1);}100%{opacity:0;}}
+.loopring{width:170px;height:170px;border:3px dashed var(--c-mint);border-radius:50%;display:flex;align-items:center;justify-content:center;animation:spin 12s linear infinite;}
+.loopring span{animation:spinBack 12s linear infinite;font-size:1.05rem;color:var(--c-mint);font-weight:700;}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes spinBack{to{transform:rotate(-360deg);}}
 
-  /* ============ 算法切換列 ============ */
-  .algobar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
-  .algobtn{border:2px solid var(--line);background:#fff;border-radius:12px;padding:9px 18px;
-    font-size:clamp(13px,1.3vw,17px);font-weight:800;color:var(--ink2);cursor:pointer;
-    font-family:inherit;transition:.18s;}
-  .algobtn:hover{border-color:var(--gold);}
-  .algobtn.on{color:#fff;}
-  .algoq{font-size:clamp(13px,1.3vw,17px);font-weight:700;color:var(--ink2);
-    background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 16px;flex:1;min-width:240px;}
-  .algoq b{color:var(--ink);}
-  @media (max-width:820px){.algoq{flex-basis:100%;}}
+/* netbox（架構與 NETS 圖框） */
+.netbox{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-xl);padding:20px;box-shadow:var(--shadow);}
 
-  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;font-size:clamp(12px,1.2vw,16px);font-weight:700;}
-  .legend span{display:inline-flex;align-items:center;gap:7px;color:var(--ink2);}
-  .dot{width:12px;height:12px;border-radius:50%;display:inline-block;}
+/* 現場模擬（媒合 demo） */
+#sim{background:linear-gradient(180deg,var(--bg-soft) 0%,var(--bg) 100%);
+  --gold:#b5894e;--gold-d:#8c6837;--ink2:var(--ink-faint);
+  --rel-supply:#b5894e;--rel-complement:#5f8a6a;--rel-referral:#5b7fa6;--rel-peer:#c0673e;}
+#sim .demoband{margin:0 auto;max-width:880px;font-size:.92rem;font-weight:600;color:var(--gold-d);background:#fbf1dd;border:1px solid #e2cba0;border-radius:12px;padding:8px 18px;text-align:center;}
+#sim .simwrap{width:100%;max-width:1060px;margin:22px auto 0;}
+#sim .legend{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;font-size:.98rem;font-weight:700;}
+#sim .legend span{display:inline-flex;align-items:center;gap:7px;color:var(--ink2);}
+#sim .dot{width:13px;height:13px;border-radius:50%;display:inline-block;}
+#sim .stage{position:relative;width:100%;height:470px;margin:14px auto 0;background:linear-gradient(180deg,#fffdf9,#f6efe2);border:1px solid #ecdfc9;border-radius:20px;overflow:hidden;}
+#sim .svg-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+#sim .node{position:absolute;transform:translate(-50%,-50%);transition:left .9s cubic-bezier(.6,.05,.2,1),top .9s cubic-bezier(.6,.05,.2,1);background:#fff;border-radius:14px;padding:7px 11px;min-width:92px;text-align:center;box-shadow:0 6px 16px rgba(120,90,40,.14);border:2px solid #eadfca;z-index:2;cursor:default;}
+#sim .node .nm{font-size:15px;font-weight:800;color:var(--ink);white-space:nowrap;}
+#sim .node .nm em{font-style:normal;font-weight:600;font-size:12px;color:var(--ink2);margin-left:4px;}
+#sim .node .co{font-size:12px;color:var(--ink2);white-space:nowrap;line-height:1.4;}
+#sim .node.supply{border-color:var(--rel-supply);}
+#sim .node.complement{border-color:var(--rel-complement);}
+#sim .node.referral{border-color:var(--rel-referral);}
+#sim .node.peerlearn{border-color:var(--rel-peer);}
+#sim .stage.done .node{cursor:pointer;}
+#sim .ctrl{margin-top:16px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center;}
+#sim .btn{font-size:1.05rem;font-weight:800;color:#fff;background:var(--gold);border:none;border-radius:14px;padding:12px 28px;cursor:pointer;box-shadow:0 8px 20px rgba(120,90,40,.2);font-family:inherit;}
+#sim .btn:hover{background:var(--gold-d);}
+#sim .btn.ghost{background:#fff;color:var(--gold-d);border:2px solid var(--gold);box-shadow:none;}
+#sim .btn.active{box-shadow:0 0 0 3px rgba(181,137,78,.32),0 8px 20px rgba(120,90,40,.2);}
+#sim .count{font-size:1.05rem;font-weight:800;color:var(--gold-d);min-height:28px;}
+#sim .hintline{text-align:center;font-size:.98rem;color:var(--ink2);margin-top:6px;min-height:24px;font-weight:700;}
+#sim .algo-panel{margin:16px auto 4px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1060px;}
+#sim .algo-card{background:#fff;border:1px solid #eadfca;border-radius:16px;padding:15px 17px;text-align:left;box-shadow:0 6px 16px rgba(120,90,40,.08);cursor:pointer;transition:.2s;}
+#sim .algo-card:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(120,90,40,.13);}
+#sim .algo-card.active{border-color:var(--gold);box-shadow:0 0 0 3px rgba(181,137,78,.22),0 10px 22px rgba(120,90,40,.12);background:#fffaf0;}
+#sim .algo-card .ak{font-size:.82rem;font-weight:900;color:var(--gold-d);letter-spacing:.08em;}
+#sim .algo-card h3{font-family:inherit;font-size:1.08rem;margin:2px 0 5px;font-weight:900;}
+#sim .algo-card p{font-size:.92rem;line-height:1.55;color:var(--ink2);}
+#sim .algo-card .params{margin-top:8px;font-size:.86rem;font-weight:800;color:var(--gold-d);}
+#sim .mode-status{margin:10px auto 0;max-width:1060px;background:#fff;border:1px solid #eadfca;border-radius:14px;padding:10px 16px;color:var(--ink2);font-size:.94rem;font-weight:700;text-align:center;}
+#sim .result{margin:12px auto 0;display:none;gap:10px;max-width:1000px;text-align:left;}
+#sim .result.show{display:grid;grid-template-columns:1fr 1fr;}
+#sim .grp{font-size:1rem;background:#fff;border-radius:12px;padding:11px 16px;border:1px solid #eadfca;cursor:pointer;transition:.15s;}
+#sim .grp:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(120,90,40,.14);}
+#sim .grp b{font-weight:800;}
+#sim .grp .go{float:right;color:var(--gold-d);font-weight:800;}
+#sim .person-card-link{appearance:none;border:none;background:transparent;color:var(--gold-d);font:inherit;font-weight:900;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px;cursor:pointer;padding:0 2px;border-radius:6px;}
+#sim .person-card-link:hover,#sim .person-card-link:focus{background:#fbf3e3;outline:2px solid rgba(181,137,78,.28);}
+#sim .close-band{max-width:900px;margin:44px auto 0;text-align:center;}
+#sim .close-band .quote{font-size:clamp(19px,2.2vw,25px);font-weight:800;color:var(--gold-d);background:#fff;border:1px solid #eadfca;border-radius:18px;padding:20px 26px;box-shadow:0 10px 26px rgba(120,90,40,.1);}
+#sim .close-band .small{font-size:.98rem;color:var(--ink2);margin-top:14px;}
+#sim #tooltip{position:fixed;z-index:200;max-width:300px;background:#3a2e22;color:#fff;border-radius:14px;padding:13px 17px;box-shadow:0 14px 34px rgba(0,0,0,.28);pointer-events:none;opacity:0;transform:translateY(6px);transition:.18s;display:none;text-align:left;}
+#sim #tooltip.show{opacity:1;transform:translateY(0);}
+#sim #tooltip .tt-h{font-weight:800;font-size:17px;margin-bottom:4px;}
+#sim #tooltip .tt-r{font-size:14px;line-height:1.5;margin-top:3px;opacity:.96;}
+#sim #tooltip .tt-r b{color:#e9c98f;}
+#sim .modal{position:fixed;inset:0;background:rgba(58,46,34,.55);z-index:300;display:none;align-items:center;justify-content:center;padding:18px;}
+#sim .modal.show{display:flex;}
+#sim .mbox{background:var(--bg);border-radius:22px;max-width:980px;width:100%;max-height:92vh;overflow-y:auto;padding:30px 34px 26px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.35);}
+#sim .mclose{position:absolute;top:14px;right:16px;font-size:26px;font-weight:800;color:var(--ink2);background:none;border:none;cursor:pointer;line-height:1;}
+#sim .mtype{display:inline-block;font-size:.92rem;font-weight:800;color:#fff;border-radius:999px;padding:4px 16px;margin-bottom:8px;}
+#sim .mtitle{font-size:clamp(22px,3vw,30px);font-weight:800;line-height:1.3;}
+#sim .msub{font-size:.98rem;color:var(--ink2);margin-top:2px;}
+#sim .venn{position:relative;margin-top:18px;padding:26px 6px 18px;}
+#sim .vcirc{position:absolute;border-radius:50%;opacity:.5;top:0;bottom:0;margin:auto 0;height:100%;aspect-ratio:1/1;}
+#sim .venn .cL{left:0;border:3px solid var(--gold);background:rgba(181,137,78,.07);}
+#sim .venn .cR{right:0;border:3px solid #5f8a6a;background:rgba(95,138,106,.07);}
+#sim .venn.v3 .cM{left:0;right:0;margin:auto;border:3px solid #5b7fa6;background:rgba(91,127,166,.06);}
+#sim .vcols{position:relative;display:grid;grid-template-columns:1fr 1.05fr 1fr;gap:10px;z-index:2;}
+#sim .venn.v3 .vcols{grid-template-columns:1fr 1fr 1fr;}
+#sim .vcol h5,#sim .vmid h5{font-size:1rem;font-weight:800;text-align:center;margin-bottom:8px;color:var(--ink);}
+#sim .vcol h5 small,#sim .vmid h5 small{display:block;font-size:.82rem;color:var(--ink2);font-weight:600;}
+#sim .vb{background:#fff;border:2px solid #eadfca;border-radius:999px;padding:9px 14px;text-align:center;font-size:.9rem;line-height:1.5;margin:8px auto;max-width:270px;box-shadow:0 4px 12px rgba(120,90,40,.08);}
+#sim .vcol.left .vb{border-color:#d8bd94;}
+#sim .vcol.right .vb{border-color:#a9c4b1;}
+#sim .vmid .vb{border-color:var(--ink);background:#fbf3e3;font-weight:700;}
+#sim .jointwide{position:relative;z-index:2;margin-top:6px;}
+#sim .jointwide .vb{max-width:560px;}
+#sim .mrow{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #eadfca;border-radius:14px;padding:12px 18px;margin-top:10px;font-size:.98rem;text-align:left;}
+#sim .mrow b{flex-shrink:0;color:var(--gold-d);font-weight:800;}
+#sim .flowlist{margin-top:14px;display:flex;flex-direction:column;gap:2px;text-align:left;}
+#sim .flowitem{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #eadfca;border-radius:12px;padding:10px 14px;font-size:.92rem;}
+#sim .flowitem .fi-n{font-weight:800;color:var(--gold-d);min-width:20px;}
+#sim .flowitem b{font-weight:800;}
+#sim .flowitem .fi-co{font-size:.82rem;color:var(--ink2);margin-top:2px;}
+#sim .flowarrow{font-size:.88rem;color:var(--ink2);padding:4px 0 4px 30px;font-weight:600;}
+#sim .cardframe{width:100%;height:62vh;border:1px solid #eadfca;border-radius:14px;background:#fff;margin-top:14px;display:block;}
+@media(max-width:640px){
+  #sim .algo-panel{grid-template-columns:1fr;}
+  #sim .stage{height:430px;}
+  #sim .node{min-width:70px;padding:4px 6px;}
+  #sim .node .nm{font-size:12px;}
+  #sim .node .nm em{display:none;}
+  #sim .node .co{font-size:10px;}
+  #sim .result.show{grid-template-columns:1fr;}
+  #sim .mbox{padding:24px 16px 20px;}
+  #sim .vcirc{display:none;}
+  #sim .vcols{grid-template-columns:1fr;}
+  #sim .vmid{order:3;}
+}
 
-  .tag{display:inline-block;padding:3px 11px;border-radius:999px;font-size:.82em;
-    font-weight:800;color:#fff;white-space:nowrap;}
-  .tag.chain{background:var(--chain);} .tag.comp{background:var(--comp);}
-  .tag.ref{background:var(--ref);} .tag.peer{background:var(--peer);}
+/* 先試一場（給活動主辦方） */
+.chatdemo{display:flex;flex-direction:column;gap:10px;margin-top:6px;}
+.bubble{max-width:78%;border-radius:16px;padding:12px 16px;font-size:.98rem;line-height:1.6;box-shadow:var(--shadow);}
+.bubble .who{font-size:.88rem;font-weight:700;color:var(--ink-faint);margin-bottom:4px;}
+.bubble.b-you{align-self:flex-start;background:var(--paper);border:1px solid var(--line);}
+.bubble.b-me{align-self:flex-end;background:#fbf3e3;border:1px solid #d8bd94;}
+.mini-tb{width:100%;border-collapse:collapse;margin-top:12px;font-size:.95rem;}
+.mini-tb th,.mini-tb td{border:1px solid var(--line-soft);padding:8px 12px;text-align:left;}
+.mini-tb th{background:var(--bg-soft);width:30%;font-weight:700;}
 
-  /* ============ 分組卡 ============ */
-  .gcard{border-left:6px solid var(--gold);}
-  .gcard .mem{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;}
-  .gcard .mem span{background:#f6eee0;border-radius:8px;padding:4px 11px;font-weight:800;
-    font-size:clamp(12px,1.2vw,16px);color:var(--ink);}
-  .gcard ul{margin:10px 0 0 18px;font-size:clamp(13px,1.25vw,17px);color:var(--ink2);}
-  .gcard ul li{margin-bottom:5px;}
+/* advisors */
+.adv-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:30px;}
+@media(max-width:860px){.adv-grid{grid-template-columns:1fr;}}
+.adv{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-xl);padding:32px;box-shadow:var(--shadow);}
+.adv .who{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.adv .face{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.3rem;font-family:'Cormorant Garamond',serif;}
+.adv h3{font-size:1.4rem;}
+.adv .tag{font-size:.95rem;color:var(--ink-faint);}
+.adv blockquote{border-left:3px solid var(--line);padding:4px 0 4px 18px;color:var(--ink-soft);font-size:1.02rem;}
+.casebox{background:var(--bg-soft);border:1px solid var(--line-soft);border-radius:var(--radius-lg);padding:20px 26px;margin-bottom:26px;font-size:1.05rem;}
+.casebox b{color:var(--c-coral);}
 
-  /* ============ 口播卡 ============ */
-  .talkcard{background:#fff;border:1px solid var(--line);border-left:8px solid var(--gold);
-    border-radius:16px;padding:clamp(18px,2vw,30px);margin-bottom:16px;
-    box-shadow:0 4px 14px rgba(120,90,40,.07);}
-  .talkcard h3{font-size:clamp(19px,2.2vw,30px);font-weight:800;margin-bottom:14px;}
-  .talkcard ol{margin-left:22px;}
-  .talkcard li{font-size:clamp(15px,1.6vw,23px);line-height:1.75;color:var(--ink);margin-bottom:10px;}
+/* compare */
+.cmp{width:100%;border-collapse:collapse;background:var(--paper);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);}
+.cmp th,.cmp td{padding:16px 18px;border:1px solid var(--line-soft);text-align:left;font-size:1rem;vertical-align:top;}
+.cmp th{background:var(--bg-soft);font-size:1.05rem;}
+.cmp td:last-child{background:rgba(169,116,74,.05);}
+.cmp-scroll{overflow-x:auto;}
 
-  /* ============ 收尾 ============ */
-  .quote{font-size:clamp(24px,3.4vw,46px);font-weight:800;line-height:1.45;max-width:1000px;}
-  .quote-sub{margin-top:22px;font-size:clamp(14px,1.5vw,20px);color:var(--ink2);max-width:860px;}
+/* eco + loop */
+.eco{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;}
+@media(max-width:860px){.eco{grid-template-columns:1fr;}}
+.eco .art{text-align:center;}
+.honest{background:var(--bg-soft);border:1px dashed var(--line);border-radius:var(--radius-lg);padding:22px 28px;margin-top:34px;font-size:1rem;color:var(--ink-soft);}
+footer{border-top:1px solid var(--line-soft);padding:44px 0;color:var(--ink-faint);font-size:1rem;text-align:center;}
+footer .hand{font-size:1.5rem;color:var(--c-sand);}
 
-  /* ============ 導覽列 ============ */
-  .navbar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(250,246,240,.94);
-    backdrop-filter:blur(8px);border-top:1px solid var(--line);
-    display:flex;align-items:center;gap:10px;padding:9px clamp(10px,2vw,20px);}
-  .navbar .tabs{display:flex;gap:6px;overflow-x:auto;flex:1;scrollbar-width:none;}
-  .navbar .tabs::-webkit-scrollbar{display:none;}
-  .tab{border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:999px;
-    padding:6px 14px;font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap;
-    font-family:inherit;transition:.15s;}
-  .tab:hover{border-color:var(--gold);}
-  .tab.on{background:var(--gold);border-color:var(--gold);color:#fff;}
-  .navbtn{border:1px solid var(--line);background:#fff;border-radius:10px;width:34px;height:34px;
-    font-size:16px;cursor:pointer;color:var(--ink2);font-family:inherit;flex-shrink:0;}
-  .navbtn:hover{border-color:var(--gold);color:var(--gold-d);}
+/* v2: 折疊層 / 詞卡 / tooltip / 掛名 */
+details.fold{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);margin:14px 0;box-shadow:var(--shadow);overflow:hidden;}
+details.fold summary{cursor:pointer;padding:18px 26px;font-weight:700;font-size:1.1rem;list-style:none;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+details.fold summary::-webkit-details-marker{display:none;}
+details.fold summary::before{content:"＋";color:var(--c-coral);font-weight:700;}
+details.fold[open] summary::before{content:"－";}
+details.fold summary .sumtag{font-family:'Caveat',cursive;font-size:1.25rem;color:var(--c-sand);font-weight:500;}
+details.fold .fold-body{padding:4px 28px 26px;color:var(--ink-soft);font-size:1.02rem;}
+details.fold .fold-body ul{margin:8px 0 8px 24px;}
+details.fold .fold-body li{margin:4px 0;}
+details.fold .fold-body h4{margin:14px 0 6px;font-size:1.08rem;}
+.term{border-bottom:2px dotted var(--c-sand);cursor:help;}
+#ttip{position:fixed;z-index:99;max-width:320px;background:#1a1612;color:#faf5ec;padding:14px 18px;border-radius:12px;font-size:1rem;line-height:1.65;pointer-events:none;opacity:0;transition:opacity .15s;box-shadow:0 12px 30px rgba(0,0,0,.25);}
+.credit-line{margin-top:12px;font-size:1rem;color:var(--ink-faint);}
+.credit-line b{color:var(--c-sand);}
+.forcegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px;margin:14px 0;}
+.forcecard{border:1px solid var(--line-soft);border-radius:var(--radius-md);padding:14px 16px;background:var(--bg-soft);font-size:.98rem;cursor:help;}
+.forcecard b{display:block;margin-bottom:4px;}
+.kb-note{border-left:3px solid var(--c-sand);background:var(--bg-soft);padding:12px 18px;border-radius:var(--radius-md);margin:12px 0;font-size:1rem;}
 
-  /* ============ 資料面板 ============ */
-  .panel{position:fixed;inset:0;z-index:90;background:rgba(58,46,34,.55);
-    display:none;align-items:center;justify-content:center;padding:16px;}
-  .panel.on{display:flex;}
-  .pbox{background:#fff;border-radius:18px;width:min(880px,100%);max-height:92vh;overflow:auto;
-    padding:clamp(20px,3vw,32px);}
-  .pbox h3{font-size:22px;font-weight:800;margin-bottom:6px;}
-  .pbox p{font-size:14px;color:var(--ink2);margin-bottom:14px;}
-  .pbox textarea{width:100%;height:290px;border:1px solid var(--line);border-radius:12px;
-    padding:12px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.6;
-    resize:vertical;background:#fdfbf7;color:var(--ink);}
-  .prow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
-  .btn{border:0;background:var(--gold);color:#fff;border-radius:10px;padding:11px 20px;
-    font-size:14.5px;font-weight:800;cursor:pointer;font-family:inherit;}
-  .btn:hover{background:var(--gold-d);}
-  .btn.ghost{background:#fff;color:var(--ink2);border:1px solid var(--line);}
-  .btn.ghost:hover{border-color:var(--gold);color:var(--gold-d);}
-  .msg{margin-top:12px;font-size:13.5px;font-weight:800;min-height:1.4em;}
-  .msg.ok{color:#5f8a6a;} .msg.err{color:#c0673e;}
-  .demoflag{position:fixed;top:12px;right:14px;z-index:70;background:#fbf1dd;border:1px solid var(--gold);
-    color:var(--gold-d);border-radius:999px;padding:5px 14px;font-size:12.5px;font-weight:800;}
+/* 參照故事動畫卡 */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px;}
+@media(max-width:860px){.story-grid{grid-template-columns:1fr;}}
+.story-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-xl);padding:30px;box-shadow:var(--shadow);position:relative;overflow:hidden;}
+.story-card::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent,var(--c-coral));}
+.story-card .story-tag{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--c-sand);display:block;}
+.story-card h3{font-size:1.45rem;margin:2px 0 14px;}
+.story-card p{color:var(--ink-soft);font-size:1rem;}
+.story-stage{position:relative;height:176px;background:var(--bg-soft);border:1px solid var(--line-soft);border-radius:var(--radius-md);margin:0 0 16px;overflow:hidden;}
+.sim-chip{position:absolute;top:36px;padding:7px 13px;border-radius:var(--radius-md);border:1.5px dashed var(--c-sky);color:var(--c-sky);background:#fff;font-size:.95rem;}
+.sim-chip.a{left:9%;animation:bmL .5s ease-in-out infinite alternate;}
+.sim-chip.b{right:9%;animation:bmR .5s ease-in-out infinite alternate;}
+@keyframes bmL{from{transform:translateX(0)}to{transform:translateX(30px)}}
+@keyframes bmR{from{transform:translateX(0)}to{transform:translateX(-30px)}}
+.story-stage.done .sim-chip{animation-play-state:paused;opacity:.3;}
+.sim-count{position:absolute;top:8px;width:100%;text-align:center;color:var(--ink-faint);font-size:.92rem;}
+.sim-result{position:absolute;bottom:46px;width:100%;text-align:center;font-weight:700;color:var(--c-mint);font-size:1.1rem;opacity:0;transition:.35s;}
+.sim-real{position:absolute;bottom:12px;width:100%;text-align:center;font-weight:700;color:var(--c-coral);font-size:1.02rem;opacity:0;transition:.35s;}
+.story-stage.done .sim-result,.story-stage.done .sim-real{opacity:1;}
+.mb-dot{position:absolute;border-radius:50%;background:#cdbfa5;}
+.mb-scan{position:absolute;top:0;bottom:0;width:3px;background:var(--c-sky);left:-6px;opacity:.65;}
+.mb-scan.run{animation:mbScan 2.4s linear forwards;}
+@keyframes mbScan{from{left:-4px}to{left:101%}}
+.mb-hidden{background:var(--c-sand);}
+.mb-hidden.found{background:var(--c-coral);box-shadow:0 0 0 7px rgba(169,116,74,.22);}
+.mb-label{position:absolute;padding:4px 12px;border-radius:var(--radius-pill);background:var(--c-coral);color:#fff;font-size:.9rem;font-weight:700;opacity:0;transition:.35s;}
+.mb-label.show{opacity:1;}
 
-  /* ============ 等待現場結果（學員手機在推送前打開會看到這個） ============ */
-  .waiting{position:fixed;inset:0;z-index:80;background:var(--bg);display:none;
-    flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px 24px;}
-  .waiting.on{display:flex;}
-  .waiting .dots{display:flex;gap:9px;margin-bottom:30px;}
-  .waiting .dots i{width:12px;height:12px;border-radius:50%;background:var(--gold);
-    animation:bounce 1.3s infinite ease-in-out;}
-  .waiting .dots i:nth-child(2){animation-delay:.18s;}
-  .waiting .dots i:nth-child(3){animation-delay:.36s;}
-  @keyframes bounce{0%,70%,100%{transform:translateY(0);opacity:.45;}35%{transform:translateY(-11px);opacity:1;}}
-  .waiting h2{font-size:clamp(24px,6vw,38px);font-weight:800;margin:0 0 16px;line-height:1.35;}
-  .waiting p{font-size:clamp(15px,3.6vw,19px);color:var(--ink2);max-width:520px;line-height:1.8;}
-  .waiting .sub{margin-top:22px;font-size:clamp(13px,3.2vw,15px);color:var(--ink3);}
-
-  @media (max-width:820px){
-    .g2,.g3{grid-template-columns:1fr;}
-    .slide{padding:18px 16px 92px;}
-    .bar{grid-template-columns:minmax(72px,1fr) 3fr auto;}
-    .stage{min-height:420px;}
-  }
-  @media print{.navbar,.panel,.demoflag{display:none;} .slide{display:block!important;page-break-after:always;}}
+/* 動畫卡：單次播放與重播 */
+.replay{position:absolute;right:10px;bottom:10px;padding:4px 12px;border-radius:999px;border:1.5px solid var(--c-coral);background:#fff;color:var(--c-coral);font-weight:700;font-size:.9rem;cursor:pointer;opacity:0;pointer-events:none;transition:.3s;z-index:5;}
+.story-stage.done .replay{opacity:1;pointer-events:auto;}
+.mb-note{position:absolute;top:8px;width:100%;text-align:center;font-size:.92rem;color:var(--ink-soft);font-weight:600;}
+.mb-dot.seen{box-shadow:0 0 0 5px rgba(160,129,68,.35);}
 </style>
+<!-- tracking:vercel-analytics -->
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+<meta name="robots" content="noindex,nofollow" />
 </head>
 <body>
+<a href="/cases.html" style="position:fixed;left:18px;bottom:18px;z-index:1000;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:999px;padding:8px 14px;color:var(--ink-soft);text-decoration:none;box-shadow:var(--shadow);font-size:.9rem;">← 回知識官網案例</a>
 
-<div class="demoflag" id="demoflag">範例資料 · 尚未載入現場結果</div>
-
-<div class="waiting" id="waiting">
-  <div class="dots"><i></i><i></i><i></i></div>
-  <h2>結果還在跑</h2>
-  <p>大家的交流檔案正在分析中。這一頁會自己更新，不用一直重整，結果出來就會跳出來。</p>
-  <div class="sub">如果等太久，手動重新整理一次也可以</div>
-</div>
-
-<div class="deck">
-
-  <!-- 0 封面 -->
-  <section class="slide on" id="s0"><div class="wrap">
-    <div class="kicker" id="c-kicker">8/15 永續影響力扶輪社 AI 課程 · 數位商會體驗活動</div>
-    <h1 id="c-title">今天這個房間，AI 看到了什麼</h1>
-    <div class="lead" id="c-lead"></div>
-    <div class="cover-band" id="c-chips"></div>
-    <div class="cover-note">這是 AI 從各位自己填的公開版介紹整理出來的交流接點，不是合作名單，也不是評分。沒有被點到不代表不適合交流，只是現場時間有限，先挑幾個最容易說明的例子。</div>
-  </div></section>
-
-  <!-- 1 全場分布 -->
-  <section class="slide" id="s1"><div class="wrap">
-    <div class="sechead"><div class="kicker">Part 1</div><h2>今天現場長什麼樣</h2></div>
-    <div class="tablewrap"><table>
-      <thead><tr><th>領域</th><th>成員</th><th style="text-align:right">人數</th><th>共同關心的議題</th></tr></thead>
-      <tbody id="d-table"></tbody>
-    </table></div>
-    <h3 style="margin:26px 0 12px;font-size:clamp(17px,1.8vw,23px);font-weight:800;">最常出現的關心議題</h3>
-    <div class="bars" id="d-bars"></div>
-    <div class="card" style="margin-top:22px;"><p id="d-overview"></p></div>
-  </div></section>
-
-  <!-- 2 配對 -->
-  <section class="slide" id="s2"><div class="wrap">
-    <div class="sechead"><div class="kicker">Part 2</div><h2 id="p2-title">AI 看到的交流接點</h2></div>
-    <div class="algobar" data-bar></div>
-    <div class="legend" id="p-legend"></div>
-    <div class="stage" id="stage"><svg id="svg" preserveAspectRatio="none"></svg></div>
-    <div class="tablewrap" style="margin-top:22px;"><table>
-      <thead><tr><th>配對</th><th>類型</th><th>為什麼接得起來</th><th>可以聊的話題</th><th>建議第一步</th></tr></thead>
-      <tbody id="p-table"></tbody>
-    </table></div>
-  </div></section>
-
-  <!-- 3 重新分組 -->
-  <section class="slide" id="s3"><div class="wrap">
-    <div class="sechead"><div class="kicker">Part 3</div><h2>如果不照原本桌次，改照題目分</h2></div>
-    <div class="algobar" data-bar></div>
-    <div class="grid g2" id="g-cards"></div>
-  </div></section>
-
-  <!-- 4 三組口播 -->
-  <section class="slide" id="s4"><div class="wrap">
-    <div class="sechead"><div class="kicker">Part 4</div><h2>現場點三組示範</h2></div>
-    <div class="algobar" data-bar></div>
-    <div id="t-cards"></div>
-  </div></section>
-
-  <!-- 5 收尾 -->
-  <section class="slide" id="s5"><div class="wrap" style="padding-top:8vh;">
-    <div class="kicker">收尾</div>
-    <div class="quote" style="margin-top:18px;">它之所以配得出來，<br>是因為每個人的 AI 都先懂了自己的老闆。</div>
-    <div class="quote-sub">今天只用了一段自我介紹，就配出這些接點。如果你的 AI 累積的是一整年的工作紀錄、客戶對話、決策脈絡，它能替你看見的就不只是名片上的產業，而是議題、節奏，跟真正合得起來的合作可能。</div>
-    <div class="cover-note" style="margin-top:34px;" id="e-notes"></div>
-  </div></section>
-
-</div>
-
-<!-- 導覽列 -->
-<div class="navbar">
-  <button class="navbtn" id="prevBtn" title="上一頁">‹</button>
-  <div class="tabs" id="tabs"></div>
-  <button class="navbtn" id="nextBtn" title="下一頁">›</button>
-  <button class="navbtn" id="dataBtn" title="載入現場資料">⚙</button>
-</div>
-
-<!-- 資料面板 -->
-<div class="panel" id="panel"><div class="pbox">
-  <h3>載入現場分析結果</h3>
-  <p>把 AI 產出的 JSON 貼進來按「套用」，整份投影就換成現場真資料。資料只存在這台電腦的瀏覽器裡，不會上傳。</p>
-  <div class="prow" style="margin:0 0 12px;">
-    <button class="btn ghost" id="copyPromptBtn">① 複製「請 AI 輸出 JSON」的指令</button>
-    <button class="btn ghost" id="loadSampleBtn">貼入範例格式參考</button>
+<header style="padding:52px 0 0;text-align:center">
+  <div class="container">
+    <div class="brand" style="justify-content:center"><span class="hand">數位商會</span> 現場媒合結果</div>
   </div>
-  <textarea id="jsonInput" placeholder="② 把 AI 吐出來的 JSON 整段貼在這裡"></textarea>
-  <div class="prow">
-    <button class="btn" id="applyBtn">③ 套用並投影</button>
-    <button class="btn ghost" id="saveBtn">④ 存一份含資料的 HTML（重整不掉）</button>
-  </div>
-  <div class="prow">
-    <button class="btn ghost" id="copyDataBtn">複製目前資料</button>
-    <button class="btn ghost" id="clearBtn">清除、回到範例資料</button>
-    <button class="btn ghost" id="closeBtn">關閉</button>
-  </div>
-  <div class="msg" id="msg"></div>
-  <p style="margin:14px 0 0;font-size:13px;color:#8d7c66;">套用後資料存在這個瀏覽器分頁裡。投影過程中不要重新整理；真的要保險，按上面第 ④ 顆存一份檔案下來，那一份重整也不會掉。</p>
-</div></div>
+</header>
 
+
+<section id="sim">
+  <div class="container">
+    <div class="eyebrow">2026/08/15 · 台北永續影響力扶輪社</div>
+    <h2 class="section-title">今天這個房間，AI 看到了什麼</h2>
+    <p class="section-sub">現場收到 <b>14 份</b>交流檔案，加上行為模式問卷四題。同一批資料，換一種思維模型就配出完全不同的結果：<b>商會模式看生意、人際模式看合拍、扶輪模式看服務</b>。按上方算法卡或下方按鈕重算。滑過名片看他寫了什麼，跑完後點任何一個人看他被分到哪一組、為什麼。</p>
+    <div class="demoband">⚠️ 以下是今天現場真實填寫的資料，只用大家自己寫出來的內容，沒有推測公司規模、客戶名單或財務狀況。AI 媒合僅供交流參考，可能誤判或遺漏；要不要合作請本人再確認。</div>
+    <div class="algo-panel" id="algoPanel" aria-label="三種算法切換說明">
+      <div class="algo-card active" data-mode="biz" role="button" tabindex="0">
+        <div class="ak">ALGORITHM 01</div>
+        <h3>商會模式｜生意接得起來</h3>
+        <p>用需求、供給、客群與可引薦性，把 14 位參加者排成能立刻開聊的小組。</p>
+        <div class="params">參數：需求 × 供給 × 客群重疊 × 可落地第一步</div>
+      </div>
+      <div class="algo-card" data-mode="renji" role="button" tabindex="0">
+        <div class="ak">ALGORITHM 02</div>
+        <h3>人際模式｜先聊得起來</h3>
+        <p>先看處境、價值觀、工作節奏與自然話題，配出低壓力、容易建立信任的圈。</p>
+        <div class="params">參數：處境相似 × 節奏合拍 × 話題自然 × 信任起點</div>
+      </div>
+      <div class="algo-card" data-mode="fulun" role="button" tabindex="0">
+        <div class="ak">ALGORITHM 03</div>
+        <h3>扶輪模式｜一起做服務</h3>
+        <p>以服務計畫、跨職業互學與四大考驗過濾，組成能對社群有貢獻的任務隊。</p>
+        <div class="params">參數：服務價值 × 職業多樣性 × 公益可行性 × 四大考驗</div>
+      </div>
+    </div>
+    <div class="mode-status" id="modeStatus">目前：商會模式。按下「商會模式」或上方卡片後，會把同一批 14 位參加者重算成 6 組商務媒合。</div>
+    <div class="simwrap">
+      <div class="legend" id="legend"></div>
+      <div class="stage" id="stage">
+        <svg class="svg-lines" id="svg"></svg>
+      </div>
+      <div class="ctrl">
+        <button class="btn active" id="modeBizBtn">商會模式</button>
+        <button class="btn ghost" id="modeRenjiBtn">人際模式</button>
+        <button class="btn ghost" id="modeFulunBtn">扶輪模式</button>
+        <button class="btn ghost" id="resetBtn">重置</button>
+        <span class="count" id="count"></span>
+      </div>
+      <div class="hintline" id="hint"></div>
+      <div class="result" id="result"></div>
+    </div>
+    <div class="close-band"><div class="quote">它之所以配得出來，是因為每個人的 AI 都先懂了自己的老闆。</div><div class="small">這裡用的素材只是你今天下午花十分鐘寫出來的一份交流檔案。知識庫養起來之後，連「這兩個人合作起來合不合拍」都算得出來。</div></div>
+    <div id="tooltip"></div>
+    <div class="modal" id="modal">
+      <div class="mbox" id="mbox"></div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="container">
+    <span class="hand">2026/08/15 台北永續影響力扶輪社</span> · AI 應用與向量分析 江昱德 · NETS 評估法 陳明勇 · 本頁資料為現場參加者自行填寫並同意公開 · 未公開索引
+  </div>
+</footer>
 <script>
-/* ============================================================
-   現場媒合結果頁 · 資料驅動版
-   資料換掉 = 整頁換掉，不用改程式碼。
-   ============================================================ */
-
-const TYPE={
-  chain:{name:'產業鏈',   color:'#b5894e', desc:'一方的產出正好是另一方的投入'},
-  comp: {name:'兩兩互補', color:'#5f8a6a', desc:'同一群客戶，服務不同，合起來更完整'},
-  ref:  {name:'客群轉介', color:'#5b7fa6', desc:'客群重疊但不競爭，可以互相介紹'},
-  peer: {name:'同業互助', color:'#c0673e', desc:'同一處境，交流方法、分攤成本'}
+/* ---------- 現場模擬（媒合 demo） ---------- */
+const W=1040,H=470;
+const typeInfo={
+  supply:{name:'供需接力',color:'#b5894e',desc:'一方的產出正好是另一方的投入'},
+  complement:{name:'兩兩互補',color:'#5f8a6a',desc:'同一群客戶，不同的服務，合起來更完整'},
+  referral:{name:'客群轉介',color:'#5b7fa6',desc:'客群重疊但不競爭，可以互相介紹'},
+  peerlearn:{name:'同業互助',color:'#c0673e',desc:'同一處境，共享方法、分攤成本、合接大案'}
 };
 
-/* ---------- 三種算法：同一批人，換一種思維模型就配出另一種結果 ---------- */
-const ALGOS={
-  biz:   {name:'商會模式', color:'#b5894e', q:'誰的生意接得起來？',
-          params:'需求 × 供給 × 客群重疊 × 可落地第一步'},
-  renji: {name:'人際模式', color:'#5b7fa6', q:'誰跟誰處得來、信得過？',
-          params:'處境相似 × 節奏合拍 × 話題自然 × 信任起點'},
-  fulun: {name:'扶輪模式', color:'#5f8a6a', q:'誰能一起做服務、互相學習？',
-          params:'服務價值 × 職業多樣性 × 公益可行性 × 四大考驗'}
+/* 20 位模擬會員（皆虛構） */
+const people=[
+  {nm:'SASA',ti:'執行長',co:'花藝協會·花店',ind:'花藝教育',pts:['花藝教育培訓、課程規劃、展覽與活動策劃','想認識花店業者與對花藝教育推廣有興趣的人','在乎作品的視覺呈現與實際使用效果']},
+  {nm:'陳明勇Vincent',ti:'引導師',co:'HRD·永續顧問',ind:'組織發展',pts:['SDGs 與影響力管理引導、ESG 報告書評審','把複雜議題轉成可參與、可行動的歷程','想把自己的方法提煉成可重複使用的 AI 工作流']},
+  {nm:'高清坊',ti:'設計師',co:'室內·通用設計',ind:'無障礙環境',pts:['通用設計、無障礙、高齡友善、康養空間','想建立自己的專業知識庫','希望通用設計被更多使用者真正用到']},
+  {nm:'Nick',ti:'設計總監',co:'奇桔數位行銷',ind:'品牌視覺',pts:['CIS 企業識別、行銷視覺、印刷製版落地','從品牌定位一路包辦到印刷落地','想找品牌重塑的企業主與展會策展人']},
+  {nm:'陳家豪',ti:'現場補',co:'交流檔案待補',ind:'—',pts:['交流檔案這一欄貼到的是指令本身','行為模式四題完整，人際模式裡面有他','現場口頭補一句就能配進商會與扶輪']},
+  {nm:'Steve',ti:'據點負責人',co:'和泰保經新北平台',ind:'保險經紀',pts:['退休規劃、高資產理財與稅務規劃','先聽懂客戶真正的問題，再把複雜的事講清楚','想認識高資產族群、企業主與能一起服務客戶的專業人士']},
+  {nm:'蕭瑛瑱',ti:'現場補',co:'交流檔案待補',ind:'—',pts:['交流檔案這一欄貼到的是指令本身','行為模式四題完整，人際模式裡面有她','現場口頭補一句就能配進商會與扶輪']},
+  {nm:'李藍',ti:'專案經理',co:'旅學堂·淡海輕軌',ind:'地方創生',pts:['活動執行、店家輔導、中小微企業數位轉型','擅長把想法一路做到落地、串起合作','想把 AI 真正導入工作，提高做事效率']},
+  {nm:'Ashley',ti:'總會長',co:'新北身障體育總會',ind:'公益社團',pts:['身心障礙者體育運動推廣、大型賽事執行','遇到問題就處理，不讓它拖到最後','想認識願意協助公益與身障體育推廣的人']},
+  {nm:'ＩＶＹ',ti:'講師',co:'Dr. Ivy·WELLINA',ind:'芳療教學',pts:['芳療、精油教學與課程規劃','重視專業查證與安全界線，不誇大療效','先確認主題、對象與時間，再從課綱逐步討論']},
+  {nm:'卓立峰',ti:'現場補',co:'交流檔案待補',ind:'—',pts:['交流檔案貼的是對話連結，要登入才看得到','行為模式四題完整，而且是全場最沉穩的一位','現場口頭補一句就能配進商會與扶輪']},
+  {nm:'Poster',ti:'負責人',co:'全明公司',ind:'戶外廣告',pts:['大型戶外廣告媒體與企劃提案','想認識有品牌曝光需求的企業與行銷企劃','希望洽談大型戶外廣告合作']},
+  {nm:'GUAN LIN PENG',ti:'企劃',co:'教育·未來設計',ind:'訪談與資訊整理',pts:['訪談、Notion 系統建立、會議資訊整理與專案推進','遇到混亂的任務會先列問題、拆待辦、再校正方向','11 月前要完成建築碩士申請作品集，想找人給回饋']},
+  {nm:'孟孟',ti:'專業推廣',co:'安搏生 EECP',ind:'醫療設備',pts:['EECP 體外反搏設備推廣、臨床交流、國際合作','天天面對醫師、醫療院所與國際夥伴','擅長把口語內容整理成專業、可直接使用的版本']}
+];
+
+/* 商會模式：九組（兩三人） */
+const smallGroups=[
+  {type:'supply',members:['Nick','Poster'],
+   joint:['設計做出來要有地方掛，版位要賣得動需要能落地的視覺','一個從品牌定位做到印刷製版，一個手上是大型戶外版位'],
+   talk:'大圖從設計檔到上牆，中間最容易出事的是哪一段。',
+   step:'交換一份戶外大圖規格清單，各自標出最怕收到什麼檔案。'},
+  {type:'supply',members:['陳明勇Vincent','李藍'],
+   joint:['地方案子做完要交代「這錢花下去改變了什麼」','那正好是影響力管理與 ESG 評審的專業'],
+   talk:'一個地方活動辦完，除了人數還能怎麼說明它的價值。',
+   step:'挑淡海輕軌那個案子，現場試寫三個影響力指標。'},
+  {type:'referral',members:['Steve','高清坊','孟孟'],
+   joint:['三個人服務的其實是同一群開始在意健康與晚年的人','一個管錢、一個管住的地方、一個管治療設備'],
+   talk:'這群客人最先會找上誰、轉介出去怎麼講才不像推銷。',
+   step:'各講三個自己客戶最常問的問題，看哪幾題是別人能答的。'},
+  {type:'complement',members:['SASA','ＩＶＹ'],
+   joint:['兩個結構幾乎一樣的教學品牌：有課綱、有師資培訓、有認證','都會碰到「療癒」這個詞怎麼講才不誇大'],
+   talk:'課綱怎麼從單堂課排到認證，中間卡住的通常是哪一關。',
+   step:'各拿一份課程架構給對方看，只講排列順序不講內容。'},
+  {type:'complement',members:['Ashley','GUAN LIN PENG'],
+   joint:['一個有實際辦出來的大型賽事，一個有訪談與資訊整理的方法','公益最常卡在辦了很多場，卻說不清楚改變了什麼'],
+   talk:'活動的成果怎麼記錄，明年接手的人才學得會。',
+   step:'挑今年辦過的一場，把成果重寫成三句話。'},
+  {type:'peerlearn',members:['陳家豪','蕭瑛瑱','卓立峰'],
+   joint:['三位的交流檔案這一欄貼到的是指令或對話連結，不是自己的檔案','AI 只能用你真的給它的東西，這就是今天最重要的一課'],
+   talk:'現場直接口頭補：我做哪一行、想認識誰、最近想解決什麼。',
+   step:'補完立刻重跑一次，三位就會出現在商會與扶輪這兩套裡。'}
+];
+const smallGcenters=[[175,140],[520,140],[865,140],[175,350],[520,350],[865,350]];
+
+/* 人際模式：六個聊得起來的圈（處境相似、話題自然、節奏合拍） */
+const renjiGroups=[
+  {type:'referral',title:'一開口就把氣氛帶起來',members:['Ashley','ＩＶＹ','Steve','李藍'],
+   joint:['四位的熱絡度都在 80 以上（Ashley 與 ＩＶＹ 都是 95）','習慣主動開場、把人拉進對話，這一桌不會冷場'],
+   talk:'認識新朋友的第一句你通常說什麼、怎麼判斷該把話題轉給別人。',
+   step:'下一場活動，讓這四位負責開場。'},
+  {type:'peerlearn',title:'先觀察，想清楚才開口',members:['卓立峰','Nick','蕭瑛瑱','陳明勇Vincent'],
+   joint:['四位的穩健度都在 65 以上（卓立峰 95、Nick 85）','習慣先聽再說，開場慢一點，但講出來的比較實在'],
+   talk:'你要觀察到什麼程度才會開口、被催著表態時怎麼處理。',
+   step:'找安靜一點的角落聊，不要在人多的地方開場。'},
+  {type:'supply',title:'一邊帶氣氛，一邊盯進度',members:['GUAN LIN PENG','孟孟','Poster','陳家豪'],
+   joint:['同時有熱絡與推進兩種傾向：撐得起場子，也記得事情該往哪走','聊得開心之後，會有人負責把它收成下一步'],
+   talk:'什麼樣的合作對象會讓你想再約第二次。',
+   step:'聊完當場約下一次，不要說「再約」。'},
+  {type:'complement',title:'不繞圈子，直接講結論',members:['SASA','高清坊'],
+   joint:['兩位的主導傾向明顯高於其他人（SASA 是全場最高的 90）','習慣把判斷直接說出來，跟你們講話最好開門見山'],
+   talk:'你最不喜歡的溝通方式是什麼、希望別人怎麼跟你提反對意見。',
+   step:'直接問對方一個具體問題，不用先鋪陳。'}
+];
+const renjiGcenters=[[265,140],[720,140],[265,350],[720,350]];
+
+/* 扶輪模式：五個服務計畫（服務優先、跨職業互學；四大考驗當過濾器） */
+const fulunGroups=[
+  {type:'supply',title:'無障礙運動日',members:['Ashley','高清坊','陳明勇Vincent'],
+   joint:['帶人出來運動、讓場地進得去、把成果寫成能傳承的紀錄','少了任何一邊，這件事都只做一半'],
+   talk:'賽事場地最常擋住輪椅的是哪一關、換屆之後計畫怎麼活下來。',
+   step:'挑一個明年要用的場地，三個人一起走一次動線。'},
+  {type:'complement',title:'地方故事記錄計畫',members:['李藍','GUAN LIN PENG','Poster'],
+   joint:['一個有現場、一個有整理方法、一個有曝光版位','地方的故事不記錄下來，人走了就沒了'],
+   talk:'地方活動的曝光通常卡在預算還是檔期。',
+   step:'挑一個淡海的店家，先做一次訪談紀錄。'},
+  {type:'peerlearn',title:'職業別互學小組',members:['Nick','SASA','ＩＶＹ'],
+   joint:['設計印刷、花藝教育、芳療課程，三種距離很遠的職業','但做的是同一件事：讓人有感覺，做法可以互相偷'],
+   talk:'你這一行最外行的人最容易誤會什麼、怎麼算一個作品完成了。',
+   step:'每月一次，輪流當老師講自己這一行。'},
+  {type:'referral',title:'企業資源連結',members:['Steve','孟孟'],
+   joint:['扶輪最常見的服務方式：不是自己捐，是把對的人牽起來','一位手上是企業主與高資產族群，一位面對醫療院所與國際夥伴'],
+   talk:'企業願意支持公益的時候，最在意的是什麼。',
+   step:'先講清楚一個具體計畫需要什麼，不要先談錢。'},
+  {type:'peerlearn',title:'現場補檔案',members:['陳家豪','蕭瑛瑱','卓立峰'],
+   joint:['三位的交流檔案沒有貼進來，AI 只拿到行為模式四題','扶輪這一套要看職業與服務能力，沒有檔案就配不了'],
+   talk:'現場口頭補：我做哪一行、我可以出什麼、我想一起做什麼服務。',
+   step:'補完重跑一次，三位就會進到上面四個服務計畫裡。'}
+];
+const fulunGcenters=[[175,140],[520,140],[865,140],[350,350],[700,350]];
+
+/* 三種算法的模式定義（核心價值文字＝按鈕 hover 說明） */
+const modeDefs={
+  biz:{label:'商會模式',groups:smallGroups,gcenters:smallGcenters,count:'媒合成 6 組',
+    hint:'👇 點任何一組（或圖上的人），看兩邊為什麼接得起來',
+    core:'問「誰的生意接得起來」：供需接力、互補方案、客群轉介、同業互助。思路參考商會引薦模式：先讓需求與可信任資源看見彼此，再安排真人開聊。'},
+  renji:{label:'人際模式',groups:renjiGroups,gcenters:renjiGcenters,count:'分成 4 個聊得起來的圈',
+    hint:'👇 點任何一圈（或圖上的人），看為什麼聊得起來',
+    core:'問「誰跟誰處得來」：處境相似、話題自然、節奏合拍。先熟人、再談事，信任是媒合的第一層。'},
+  fulun:{label:'扶輪模式',groups:fulunGroups,gcenters:fulunGcenters,count:'組成 5 個服務計畫',
+    hint:'👇 點任何一組（或圖上的人），看這個服務計畫怎麼合作',
+    core:'問「誰能一起做服務、互相學習」：配的不是生意，是服務計畫的搭檔與跨職業互學小組，用四大考驗過濾。'}
 };
+const svgDefs='';
 
-/* ---------- 給 AI 的輸出指令（現場複製貼給正在做分析的 AI） ---------- */
-const OUTPUT_PROMPT = `請把你剛剛做完的媒合分析，改成下面這個 JSON 格式輸出。只輸出 JSON 本體，前後不要加任何說明文字、不要包程式碼框。
+const stage=document.getElementById('stage');
+const svg=document.getElementById('svg');
+const tip=document.getElementById('tooltip');
+svg.setAttribute('viewBox','0 0 '+W+' '+H);
+svg.setAttribute('preserveAspectRatio','none');
+svg.innerHTML=svgDefs;
 
-規則：
-- type 只能用四個值：chain（產業鏈）、comp（兩兩互補）、ref（客群轉介）、peer（同業互助）。
-- 選「只想自己看」的人，不可以出現在 pairs、groups、spotlight 裡，distribution 可以只計人數不寫名字。
-- 沒有把握的配對就不要放，寧可少幾組。
-- 全部使用繁體中文。
-- algorithms 是三種思維模型跑同一批人的結果。你這一輪只跑了其中一種，就只填那一個，key 用下面對應的值，其他兩種等它們各自跑完再貼。
-
-三種算法的 key 與判斷參數：
-- biz（商會模式）：誰的生意接得起來。需求 × 供給 × 客群重疊 × 可落地第一步。
-- renji（人際模式）：誰跟誰處得來、信得過。處境相似 × 節奏合拍 × 話題自然 × 信任起點。
-- fulun（扶輪模式）：誰能一起做服務、互相學習。服務價值 × 職業多樣性 × 公益可行性 × 四大考驗。
-
-{
-  "meta": {
-    "kicker": "現場即時分析",
-    "title": "今天這個房間，AI 看到了什麼",
-    "lead": "兩三句話說明這批資料怎麼來的",
-    "chips": ["收到 XX 份", "XX 個領域", "XX 組交流接點"]
-  },
-  "distribution": [
-    {"cat":"領域名稱","people":["稱呼A","稱呼B"],"n":2,"topics":"這一類共同關心什麼"}
-  ],
-  "topics": [ {"name":"議題名稱","n":12} ],
-  "overview": "兩三句話溫和描述全場組成。",
-  "algorithms": [
-    {
-      "key": "biz",
-      "pairs": [
-        {"a":"稱呼A","b":"稱呼B","type":"comp","why":"為什麼接得起來，要看得出是從介紹文字來的","talk":"可以聊的話題","step":"很小很安全的第一步"}
-      ],
-      "groups": [
-        {"name":"組名（正向中性）","members":["稱呼A","稱呼B","稱呼C"],"why":"分組理由","talks":["開聊話題一","開聊話題二"]}
-      ],
-      "spotlight": [
-        {"title":"稱呼A × 稱呼B","lines":["共同點是什麼","可以聊的具體題目","一個安全的第一步"]}
-      ],
-      "notes": "這一套算法的風險提醒與主持人備註。"
-    }
-  ]
-}
-
-如果只有一套結果、不做三算法對比，也可以省略 algorithms，直接把 pairs／groups／spotlight／notes 放在最外層，頁面照樣讀得到。`;
-
-/* ---------- 範例資料（尚未載入現場結果時顯示） ---------- */
-const SAMPLE={
-  meta:{kicker:'8/15 永續影響力扶輪社 AI 課程 · 數位商會體驗活動（範例資料）',
-    title:'今天這個房間，AI 看到了什麼',
-    lead:'以下為五位虛構來賓的示意結果，用來確認版面。現場收完表單重跑一次分析，把 JSON 貼進來就會整份換掉。',
-    chips:['收到 5 份','5 個領域','3 組交流接點']},
-  distribution:[
-    {cat:'製造與營運管理',people:['王小明'],n:1,topics:'SOP、品檢紀錄、交期追蹤、接班'},
-    {cat:'教育訓練與知識庫',people:['陳美玲'],n:1,topics:'流程盤點、知識庫、AI 教材'},
-    {cat:'永續與品牌溝通',people:['林志宏'],n:1,topics:'ESG、CSR、地方合作、品牌信任'},
-    {cat:'數位工具導入',people:['張雅婷'],n:1,topics:'CRM、表單自動化、AI 客服摘要'},
-    {cat:'待釐清（不公開點名）',people:['—'],n:1,topics:'資料較短，先作分組參考'}
-  ],
-  topics:[{name:'AI／自動化',n:4},{name:'SOP／知識庫',n:2},{name:'中小企業數位轉型',n:2},{name:'ESG／品牌溝通',n:1}],
-  overview:'這組資料同時有製造現場、知識庫整理、永續品牌與數位工具導入。若只照產業看會很分散，但用「AI 如何幫組織把經驗整理清楚」來看，就出現明確的交流接點。',
-  algorithms:[
-  {key:'biz',
-   pairs:[
-    {a:'王小明',b:'陳美玲',type:'comp',
-     why:'一位有製造現場、老師傅經驗與新人訓練需求，一位明確提到流程盤點、教育訓練與知識庫建置。接點在「現場經驗如何被整理成可教的流程」。',
-     talk:'SOP、知識庫、新人訓練、AI 輔助流程整理',
-     step:'先各自說一個最想被標準化、但現在還靠口傳的流程。'},
-    {a:'林志宏',b:'張雅婷',type:'ref',
-     why:'兩人都服務中小企業，一位偏品牌與永續故事，一位偏 CRM 與自動化；客群重疊但不直接競爭，都關心怎麼讓老闆與員工聽得懂。',
-     talk:'中小企業導入語言、品牌信任、AI 工具說明',
-     step:'先交換各自最常遇到的「老闆聽不懂、員工不想用」案例。'},
-    {a:'陳美玲',b:'張雅婷',type:'chain',
-     why:'一位做流程盤點與教育訓練，一位做表單與 CRM 自動化；前者整理需求與教材，後者把流程落到工具，是方法與工具的上下游。',
-     talk:'流程盤點、表單自動化、課後追蹤',
-     step:'選一個低風險流程，討論從教學文件到自動化表單要收哪些欄位。'}
-   ],
-   groups:[
-    {name:'AI 與流程知識庫組',members:['王小明','陳美玲','張雅婷'],
-     why:'三人都提到把流程、經驗或客戶互動整理成可教、可追蹤、可自動化的形式。',
-     talks:['第一個適合交給 AI 整理的流程是什麼？','哪些地方仍需要人判斷，不能直接自動化？']},
-    {name:'永續與導入溝通組',members:['林志宏','張雅婷'],
-     why:'一位擅長永續與品牌語言，一位擅長數位工具導入，都在處理「怎麼讓中小企業聽得懂並願意開始」。',
-     talks:['如何把 AI 或 ESG 講成老闆在意的日常問題？','導入前最需要先建立哪一種信任？']}
-   ],
-   spotlight:[
-    {title:'王小明 × 陳美玲',lines:[
-      '你們不是因為公司看起來像才被放在一起，而是都提到「怎麼把人的經驗整理成可教、可交接的流程」。',
-      '可以聊的是：公司裡哪一個流程最值得先整理成 SOP。',
-      '第一步不用談合作，先各講一個現在還靠老師傅口傳的環節就好。']},
-    {title:'林志宏 × 張雅婷',lines:[
-      '你們都服務中小企業，一個偏品牌與永續溝通，一個偏數位工具導入。',
-      '很適合先交換「老闆和員工真正聽得懂的轉型語言」。',
-      '可以先各講一個最常遇到的導入卡關案例。']},
-    {title:'陳美玲 × 張雅婷',lines:[
-      '一位擅長把流程盤清楚，一位擅長把流程放進表單跟工具裡，比較像方法和工具的接力。',
-      '可以聊：從教學文件到自動化表單，中間要收哪些欄位。',
-      '建議從一個低風險的小流程開始討論就好。']}
-   ],
-   notes:'範例資料，僅供版面確認。現場投影前請確認：已排除「只想自己看」的人、已刪除客戶名稱與金額、配對理由都看得出來自介紹文字。'},
-
-  {key:'renji',
-   pairs:[
-    {a:'王小明',b:'張雅婷',type:'peer',
-     why:'一位在製造現場推工具，一位幫小團隊導入系統，兩人卡的是同一件事：東西上線了，人不用。處境相同，講起來不用解釋前提。',
-     talk:'第一線同仁抗拒新工具時，你都怎麼開場',
-     step:'各講一次最近一場「說服失敗」的經過就好，不用給結論。'},
-    {a:'陳美玲',b:'林志宏',type:'peer',
-     why:'一位把資深員工的經驗翻成新人看得懂的教材，一位把 ESG 翻成客戶聽得懂的故事。兩人的工作都是「把內行話翻成外行聽得懂的話」，節奏和職業病都像。',
-     talk:'怎麼判斷一段話對方到底聽懂了沒有',
-     step:'交換一份自己覺得寫得最順的說明稿，互相挑一句看不懂的。'}
-   ],
-   groups:[
-    {name:'翻譯者圈',members:['陳美玲','林志宏'],
-     why:'兩人都在做語言轉換的工作，習慣先問對方懂什麼，再決定怎麼說。相處的節奏接近。',
-     talks:['你最常被誤解的一句專業術語是什麼？','什麼情況你會決定不解釋、直接示範？']},
-    {name:'現場推動圈',members:['王小明','張雅婷'],
-     why:'兩人都在有實體現場、有既有習慣的組織裡推新做法，都習慣先看人再看工具。',
-     talks:['你都先說服誰？主管還是第一線？','推不動的時候你會停多久再試一次？']}
-   ],
-   spotlight:[
-    {title:'王小明 × 張雅婷',lines:[
-      '你們卡在同一個地方：工具都上線了，人不用。',
-      '很適合先聊第一線同仁抗拒的時候，你們各自都怎麼開場。',
-      '第一步不用給對方建議，先各講一次最近一場說服失敗的經過就好。']},
-    {title:'陳美玲 × 林志宏',lines:[
-      '你們的工作其實是同一種：把內行話翻成外行聽得懂的話。',
-      '可以聊：怎麼判斷對方到底聽懂了沒有。',
-      '交換一份自己覺得寫得最順的說明稿，互相挑一句看不懂的就很有收穫。']}
-   ],
-   notes:'人際模式看的是處境與節奏，不看生意規模。配對理由若牽扯到個性評價，投影前請刪掉，只留「都在處理同一件事」這種描述。'},
-
-  {key:'fulun',
-   pairs:[
-    {a:'陳美玲',b:'王小明',type:'comp',
-     why:'一位有教育訓練的方法，一位有真實的製造現場。若要做一個給在地青年的產業體驗或技職培力計畫，一個出場域、一個出教法，湊得成一個可執行的服務。',
-     talk:'能不能合開一場給在地青年的產業體驗日',
-     step:'先各自算一下能出多少時間與場地，不用先談錢。'},
-    {a:'林志宏',b:'張雅婷',type:'comp',
-     why:'一位會講永續故事，一位會把流程數位化。社福單位常缺的正好是這兩樣：說得出來，跟做得下去。兩人職業距離遠，但可以服務同一個對象。',
-     talk:'挑一個在地社福單位，能幫他們做到什麼程度',
-     step:'各推薦一個自己知道、真的需要幫忙的單位。'}
-   ],
-   groups:[
-    {name:'技職培力小隊',members:['王小明','陳美玲'],
-     why:'一個有場域、一個有教法，跨職業互補，可以共同投入一個給年輕人的培力計畫。',
-     talks:['一天的體驗課，最想讓年輕人帶走什麼？','工廠現場要準備到什麼程度才安全？']},
-    {name:'社福數位小隊',members:['林志宏','張雅婷'],
-     why:'一個處理對外溝通，一個處理內部流程，服務對象可以是同一個資源不足的單位。',
-     talks:['社福單位最容易被忽略的是哪一段？','免費幫忙的界線要畫在哪裡才長久？']}
-   ],
-   spotlight:[
-    {title:'王小明 × 陳美玲',lines:[
-      '你們一個有工廠現場，一個有教學方法，職業差很遠，但正好湊得成一件事。',
-      '可以聊：能不能合開一場給在地青年的產業體驗日。',
-      '第一步先各自算一下能出多少時間跟場地就好，不用先談錢。']},
-    {title:'林志宏 × 張雅婷',lines:[
-      '你們一個會把價值講出來，一個會把流程做下去，社福單位缺的常常正好是這兩樣。',
-      '可以聊：挑一個在地單位，能幫他們做到什麼程度。',
-      '各推薦一個自己知道、真的需要幫忙的單位，就是很好的起點。']}
-   ],
-   notes:'扶輪模式優先看服務可行性，不看生意大小。四大考驗要能通過：是否真實、是否公平、能否促進親善友誼、能否兼顧彼此利益。投影時提醒這是交流起點，不是承諾出人出錢。'}
-  ]
-};
-
-/* ============================================================ */
-const $=id=>document.getElementById(id);
-const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const KEY='rotary-match-2026-08-15';
-let DATA=SAMPLE, isSample=true, algoIdx=0, VIEW=SAMPLE;
-
-/* ---------- 資料正規化：單套格式也吃得下，一律轉成 algorithms 陣列 ---------- */
-function normalize(d){
-  d=d||{};
-  let list=Array.isArray(d.algorithms)?d.algorithms.slice():[];
-  if(!list.length){
-    list=[{key:d.key||'biz', pairs:d.pairs, groups:d.groups, spotlight:d.spotlight, notes:d.notes}];
-  }
-  list=list.filter(a=>a && (a.pairs||a.groups||a.spotlight));
-  if(!list.length) list=[{key:'biz',pairs:[],groups:[],spotlight:[]}];
-  /* 照 biz → renji → fulun 的順序排，未知 key 排最後 */
-  const order=Object.keys(ALGOS);
-  list.sort((a,b)=>{
-    const ia=order.indexOf(a.key), ib=order.indexOf(b.key);
-    return (ia<0?99:ia)-(ib<0?99:ib);
-  });
-  d.algorithms=list;
-  return d;
-}
-const algoMeta=a=>ALGOS[a.key]||{name:a.name||'媒合結果',color:'#b5894e',q:a.q||'',params:a.params||''};
-
-/* ---------- 算法切換列（Part 2/3/4 共用） ---------- */
-function renderBars(d){
-  const list=d.algorithms;
-  document.querySelectorAll('[data-bar]').forEach(bar=>{
-    /* 只有一套結果就不需要切換列 */
-    if(list.length<2){bar.style.display='none';return;}
-    bar.style.display='';
-    const cur=algoMeta(list[algoIdx]);
-    bar.innerHTML = list.map((a,i)=>{
-      const m=algoMeta(a);
-      return '<button class="algobtn'+(i===algoIdx?' on':'')+'" data-i="'+i+'"'+
-        (i===algoIdx?' style="background:'+m.color+';border-color:'+m.color+'"':'')+'>'+esc(m.name)+'</button>';
-    }).join('') + '<div class="algoq"><b>'+esc(cur.q)+'</b>'+(cur.params?'　'+esc(cur.params):'')+'</div>';
-  });
-}
-document.addEventListener('click',e=>{
-  const b=e.target.closest('.algobtn'); if(!b) return;
-  algoIdx=+b.dataset.i; render(DATA);
-  if(cur===1) animateBars();
+let mode='biz';
+const groupOfBy={};
+Object.keys(modeDefs).forEach(k=>{
+  const m={};modeDefs[k].groups.forEach((g,gi)=>g.members.forEach(nm=>m[nm]=gi));groupOfBy[k]=m;
 });
 
-/* ---------- 渲染 ---------- */
-function render(d){
-  d=normalize(d);
-  if(algoIdx>=d.algorithms.length) algoIdx=0;
-  const A=d.algorithms[algoIdx], AM=algoMeta(A);
-  renderBars(d);
-  $('p2-title').textContent = d.algorithms.length>1 && ALGOS[A.key]
-    ? AM.name+'看到的交流接點' : 'AI 看到的交流接點';
-  /* VIEW＝攤平成單套的當前視圖，drawStage 與重繪都用它 */
-  VIEW=Object.assign({},d,{pairs:A.pairs,groups:A.groups,spotlight:A.spotlight,notes:A.notes||d.notes});
-  renderBody(VIEW);
+function showTip(p,el){
+  let h='<div class="tt-h">'+p.nm+'｜'+p.ti+'</div><div class="tt-r">'+p.co+' · '+p.ind+'</div>';
+  p.pts.slice(0,2).forEach(t=>{h+='<div class="tt-r"><b>寫到：</b>'+t+'</div>';});
+  tip.innerHTML=h;tip.style.display='block';
+  const r=el.getBoundingClientRect(),tr=tip.getBoundingClientRect();
+  let left=r.left+r.width/2-tr.width/2;
+  left=Math.max(10,Math.min(left,window.innerWidth-tr.width-10));
+  let top=r.top-tr.height-12;if(top<10)top=r.bottom+12;
+  tip.style.left=left+'px';tip.style.top=top+'px';
+  requestAnimationFrame(()=>tip.classList.add('show'));
+}
+function hideTip(){tip.classList.remove('show');setTimeout(()=>{if(!tip.classList.contains('show'))tip.style.display='none';},180);}
+
+/* 節點：5 欄 4 列散開 */
+const simNodes=people.map((p,i)=>{
+  const col=i%5,row=Math.floor(i/5);
+  const sx=110+col*205, sy=90+row*130;
+  const el=document.createElement('div');
+  const gi=groupOfBy.biz[p.nm];
+  el.className='node '+smallGroups[gi].type;
+  el.innerHTML='<div class="nm">'+p.nm+'<em>'+p.ti+'</em></div><div class="co">'+p.co+'·'+p.ind+'</div>';
+  el.addEventListener('mouseenter',()=>showTip(p,el));
+  el.addEventListener('mouseleave',hideTip);
+  el.addEventListener('click',()=>{if(p.nm==='我'||p.nm==='江昱德'){hideTip();openCardModal();return;}if(stage.classList.contains('done')){hideTip();const gi2=groupOfBy[mode][p.nm];openModal(gi2);}});
+  stage.appendChild(el);
+  return {p,el,sx,sy,cx:sx,cy:sy};
+});
+const findNode=nm=>simNodes.find(n=>n.p.nm===nm);
+
+const legendEl=document.getElementById('legend');
+function setLegend(){
+  legendEl.innerHTML = mode==='biz'
+    ? '<span><i class="dot" style="background:var(--rel-supply)"></i>供需接力</span><span><i class="dot" style="background:var(--rel-complement)"></i>兩兩互補</span><span><i class="dot" style="background:var(--rel-referral)"></i>客群轉介</span><span><i class="dot" style="background:var(--rel-peer)"></i>同業互助</span>'
+    : modeDefs[mode].groups.map(g=>'<span><i class="dot" style="background:'+typeInfo[g.type].color+'"></i>'+g.title+'</span>').join('');
+}
+setLegend();
+
+function place(useCluster){
+  const r=stage.getBoundingClientRect();
+  simNodes.forEach(n=>{
+    n.el.style.left=((useCluster?n.cx:n.sx)/W*r.width)+'px';
+    n.el.style.top =((useCluster?n.cy:n.sy)/H*r.height)+'px';
+  });
+}
+place(false);
+window.addEventListener('resize',()=>place(stage.dataset.clustered==='1'));
+
+const countEl=document.getElementById('count');
+const hintEl=document.getElementById('hint');
+const resultEl=document.getElementById('result');
+const modeStatusEl=document.getElementById('modeStatus');
+const algoCards=[...document.querySelectorAll('#algoPanel .algo-card')];
+const svgns='http://www.w3.org/2000/svg';
+const modeBtns={biz:document.getElementById('modeBizBtn'),renji:document.getElementById('modeRenjiBtn'),fulun:document.getElementById('modeFulunBtn')};
+
+function currentGroups(){return modeDefs[mode].groups;}
+
+/* 依組員人數決定圍桌座位 */
+const clusterOff={
+  2:[[0,-42],[0,42]],
+  3:[[0,-50],[-85,44],[85,44]],
+  4:[[-88,-46],[88,-46],[-88,46],[88,46]],
+  5:[[0,-80],[-108,-6],[108,-6],[-62,72],[62,72]]
+};
+function assignPositions(){
+  const md=modeDefs[mode];
+  md.groups.forEach((g,gi)=>{
+    const ctr=md.gcenters[gi];
+    const off=clusterOff[g.members.length];
+    g.members.forEach((nm,mi)=>{const n=findNode(nm);n.cx=ctr[0]+off[mi][0];n.cy=ctr[1]+off[mi][1];});
+  });
 }
 
-function renderBody(d){
-  const m=d.meta||{};
-  $('c-kicker').textContent = m.kicker || '現場即時分析';
-  $('c-title').textContent  = m.title  || '今天這個房間，AI 看到了什麼';
-  $('c-lead').textContent   = m.lead   || '';
-  $('c-chips').innerHTML = (m.chips||[]).map(c=>'<div class="chip">'+esc(c)+'</div>').join('');
-  document.title = (m.title||'現場媒合結果') + '｜8/15 讓你的 AI 更懂你';
+/* 圈圈大小依組員人數 */
+const ellSize={2:[82,96],3:[158,88],4:[168,100],5:[190,125]};
 
-  /* Part 1 分布 */
-  $('d-table').innerHTML = (d.distribution||[]).map(r=>
-    '<tr><td class="k">'+esc(r.cat)+'</td><td>'+esc((r.people||[]).join('、'))+
-    '</td><td style="text-align:right;font-weight:800;color:#8c6837">'+esc(r.n!=null?r.n:(r.people||[]).length)+
-    '</td><td>'+esc(r.topics)+'</td></tr>').join('') || '<tr><td colspan="4">尚無資料</td></tr>';
-
-  const tp=d.topics||[], mx=Math.max(1,...tp.map(t=>+t.n||0));
-  $('d-bars').innerHTML = tp.map(t=>
-    '<div class="bar"><div class="nm">'+esc(t.name)+'</div><div class="track"><div class="fill" data-w="'+
-    Math.round((+t.n||0)/mx*100)+'"></div></div><div class="n">'+esc(t.n)+'</div></div>').join('');
-  $('d-overview').textContent = d.overview||'';
-
-  /* Part 2 配對表 */
-  $('p-legend').innerHTML = Object.keys(TYPE).map(k=>
-    '<span><i class="dot" style="background:'+TYPE[k].color+'"></i>'+TYPE[k].name+'：'+TYPE[k].desc+'</span>').join('');
-  $('p-table').innerHTML = (d.pairs||[]).map(p=>{
-    const t=TYPE[p.type]||TYPE.comp;
-    return '<tr><td class="k">'+esc(p.a)+' × '+esc(p.b)+'</td><td><span class="tag '+
-      (TYPE[p.type]?p.type:'comp')+'">'+t.name+'</span></td><td>'+esc(p.why)+
-      '</td><td>'+esc(p.talk)+'</td><td>'+esc(p.step)+'</td></tr>';
-  }).join('') || '<tr><td colspan="5">尚無配對資料</td></tr>';
-
-  /* Part 3 分組 */
-  $('g-cards').innerHTML = (d.groups||[]).map(g=>
-    '<div class="card gcard"><h3>'+esc(g.name)+'</h3><div class="mem">'+
-    (g.members||[]).map(x=>'<span>'+esc(x)+'</span>').join('')+'</div><p>'+esc(g.why)+
-    '</p><ul>'+(g.talks||[]).map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul></div>').join('')
-    || '<div class="card"><p>尚無分組資料</p></div>';
-
-  /* Part 4 口播 */
-  $('t-cards').innerHTML = (d.spotlight||[]).map(s=>
-    '<div class="talkcard"><h3>'+esc(s.title)+'</h3><ol>'+
-    (s.lines||[]).map(l=>'<li>'+esc(l)+'</li>').join('')+'</ol></div>').join('')
-    || '<div class="talkcard"><p>尚無口播資料</p></div>';
-
-  $('e-notes').textContent = d.notes||'';
-
-  $('demoflag').style.display = isSample ? 'block' : 'none';
-  drawStage(d);
-  if(cur===1) animateBars();
-}
-
-/* ---------- 配對星圖：任何人數、任何組數都自動排 ---------- */
-function drawStage(d){
-  const stage=$('stage'), svg=$('svg');
-  stage.querySelectorAll('.node,.glabel').forEach(n=>n.remove());
-  svg.innerHTML='';
-  const pairs=(d.pairs||[]).filter(p=>p&&p.a&&p.b);
-  if(!pairs.length){stage.style.height='180px';return;}
-
-  const w=stage.clientWidth||1000;
-  const cols=Math.max(1,Math.min(pairs.length, w<620?1:(w<960?2:3)));
-  const rows=Math.ceil(pairs.length/cols);
-  const cellH=190, padT=34;
-  stage.style.height=(rows*cellH+padT)+'px';
-  /* CSS 的 min-height 可能把畫布撐高，一律以實際高度當座標系，避免連線跟人名對不齊 */
-  const H=stage.clientHeight||(rows*cellH+padT);
-  const rowH=(H-padT)/rows;
-  svg.setAttribute('viewBox','0 0 '+w+' '+H);
-  svg.setAttribute('preserveAspectRatio','none');
-
-  const info=p=>{
-    const key=(d.distribution||[]).find(r=>(r.people||[]).includes(p));
-    return key?key.cat:'';
-  };
-
-  pairs.forEach((p,i)=>{
-    const c=i%cols, r=Math.floor(i/cols);
-    const cx=(c+0.5)*(w/cols), cy=padT+(r+0.5)*rowH;
-    const t=TYPE[p.type]?p.type:'comp', col=TYPE[t].color;
-    const dx=Math.min(105,(w/cols)*0.27);
-
-    /* 連線 */
-    const ln=document.createElementNS('http://www.w3.org/2000/svg','line');
-    ln.setAttribute('x1',cx-dx); ln.setAttribute('y1',cy);
-    ln.setAttribute('x2',cx+dx); ln.setAttribute('y2',cy);
-    ln.setAttribute('stroke',col); ln.setAttribute('stroke-width','3');
-    ln.setAttribute('stroke-linecap','round'); ln.setAttribute('opacity','.75');
-    svg.appendChild(ln);
-
-    /* 類型標籤 */
-    const lab=document.createElement('div');
-    lab.className='glabel'; lab.style.background=col;
-    lab.style.left=cx+'px'; lab.style.top=(cy-46)+'px';
-    lab.textContent=TYPE[t].name;
-    stage.appendChild(lab);
-
-    /* 兩個人 */
-    [[p.a,cx-dx],[p.b,cx+dx]].forEach(([nm,x])=>{
-      const el=document.createElement('div');
-      el.className='node '+t;
-      el.style.left=x+'px'; el.style.top=cy+'px';
-      el.innerHTML='<div class="nm">'+esc(nm)+'</div>'+(info(nm)?'<div class="co">'+esc(info(nm))+'</div>':'');
-      stage.appendChild(el);
+function runSim(){
+  const md=modeDefs[mode];
+  const groups=currentGroups();
+  simNodes.forEach(n=>{
+    const gi=groupOfBy[mode][n.p.nm];
+    n.el.className='node '+groups[gi].type;
+  });
+  assignPositions();
+  stage.dataset.clustered='1';
+  place(true);
+  setTimeout(()=>{
+    svg.innerHTML='';
+    groups.forEach((g,gi)=>{
+      const col=typeInfo[g.type].color,mem=g.members.map(findNode);
+      const ctr=md.gcenters[gi];
+      const sz=ellSize[g.members.length];
+      const ell=document.createElementNS(svgns,'ellipse');
+      ell.setAttribute('cx',ctr[0]);ell.setAttribute('cy',ctr[1]);
+      ell.setAttribute('rx',sz[0]);ell.setAttribute('ry',sz[1]);
+      ell.setAttribute('fill',col);ell.setAttribute('opacity','0');
+      ell.style.transition='opacity .5s';ell.style.transitionDelay=(0.07*gi)+'s';
+      svg.appendChild(ell);
+      requestAnimationFrame(()=>ell.setAttribute('opacity','0.09'));
+      for(let k=0;k<mem.length-1;k++){
+        const a=mem[k],b=mem[k+1];
+        const ln=document.createElementNS(svgns,'line');
+        ln.setAttribute('x1',a.cx);ln.setAttribute('y1',a.cy);
+        ln.setAttribute('x2',b.cx);ln.setAttribute('y2',b.cy);
+        ln.setAttribute('stroke',col);ln.setAttribute('stroke-width','2.6');
+        ln.setAttribute('stroke-linecap','round');ln.setAttribute('opacity','0');
+        ln.style.transition='opacity .5s';ln.style.transitionDelay=(0.07*gi+0.12)+'s';
+        svg.appendChild(ln);
+        requestAnimationFrame(()=>ln.setAttribute('opacity','0.6'));
+      }
     });
+    stage.classList.add('done');
+  },900);
+  countEl.textContent = md.count;
+  hintEl.innerHTML = '<b>'+md.label+'：</b>'+md.core+'<br>'+md.hint;
+  resultEl.innerHTML='';
+  groups.forEach((g,gi)=>{
+    const div=document.createElement('div');
+    div.className='grp';
+    div.style.borderLeft='6px solid '+typeInfo[g.type].color;
+    div.innerHTML = mode==='biz'
+      ? '<b>'+typeInfo[g.type].name+'</b>　'+g.members.map(renderMemberName).join('　↔　')+'<span class="go">看接點 ›</span>'
+      : '<b>'+g.title+'</b>　'+g.members.map(renderMemberName).join('、')+'<span class="go">'+(mode==='fulun'?'看計畫 ›':'看為什麼 ›')+'</span>';
+    div.onclick=()=>openModal(gi);
+    resultEl.appendChild(div);
+    wireCardLinks(div);
   });
+  resultEl.classList.add('show');
 }
-
-/* ---------- 分頁 ---------- */
-const TITLES=['封面','全場分布','交流接點','重新分組','點三組','收尾'];
-let cur=0;
-$('tabs').innerHTML=TITLES.map((t,i)=>'<button class="tab'+(i===0?' on':'')+'" data-i="'+i+'">'+t+'</button>').join('');
-function go(i){
-  cur=Math.max(0,Math.min(TITLES.length-1,i));
-  document.querySelectorAll('.slide').forEach((s,k)=>s.classList.toggle('on',k===cur));
-  document.querySelectorAll('.tab').forEach((t,k)=>t.classList.toggle('on',k===cur));
-  window.scrollTo(0,0);
-  if(cur===1) animateBars();
-  if(cur===2) drawStage(VIEW);
+function resetSim(){
+  stage.dataset.clustered='0';
+  stage.classList.remove('done');
+  place(false);
+  svg.innerHTML='';
+  countEl.textContent='';
+  hintEl.textContent='';
+  resultEl.classList.remove('show');
+  Object.values(modeBtns).forEach(b=>b.classList.remove('active'));
+  algoCards.forEach(c=>c.classList.toggle('active',c.dataset.mode===mode));
+  modeStatusEl.textContent='已重置；目前選擇：'+modeDefs[mode].label+'。按下對應按鈕即可重新計算。';
 }
-function animateBars(){
-  document.querySelectorAll('#d-bars .fill').forEach(f=>{
-    f.style.width='0'; requestAnimationFrame(()=>{setTimeout(()=>{f.style.width=f.dataset.w+'%';},40);});
-  });
+function activateMode(k){
+  mode=k;
+  Object.values(modeBtns).forEach(x=>x.classList.remove('active'));
+  modeBtns[k].classList.add('active');
+  algoCards.forEach(c=>c.classList.toggle('active',c.dataset.mode===k));
+  setLegend();
+  runSim();
+  modeStatusEl.textContent='目前：'+modeDefs[k].label+'。'+modeDefs[k].count+'；同一批 20 位會員已用這套參數重算。';
 }
-$('tabs').addEventListener('click',e=>{const b=e.target.closest('.tab'); if(b) go(+b.dataset.i);});
-$('prevBtn').onclick=()=>go(cur-1);
-$('nextBtn').onclick=()=>go(cur+1);
-document.addEventListener('keydown',e=>{
-  if($('panel').classList.contains('on')) return;
-  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ') {e.preventDefault(); go(cur+1);}
-  if(e.key==='ArrowLeft' ||e.key==='PageUp')  {e.preventDefault(); go(cur-1);}
-  if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
+algoCards.forEach(card=>{
+  card.addEventListener('click',()=>activateMode(card.dataset.mode));
+  card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activateMode(card.dataset.mode);}});
 });
-let resizeT; window.addEventListener('resize',()=>{clearTimeout(resizeT);resizeT=setTimeout(()=>{if(cur===2)drawStage(VIEW);},180);});
-
-/* ---------- 資料面板 ---------- */
-const panel=$('panel'), msg=$('msg');
-$('dataBtn').onclick=()=>{panel.classList.add('on');msg.textContent='';};
-$('closeBtn').onclick=()=>panel.classList.remove('on');
-panel.addEventListener('click',e=>{if(e.target===panel)panel.classList.remove('on');});
-
-$('copyPromptBtn').onclick=async()=>{
-  try{ await navigator.clipboard.writeText(OUTPUT_PROMPT);
-    msg.className='msg ok'; msg.textContent='已複製。貼給剛剛跑分析的那個 AI，它會吐出 JSON。';
-  }catch(err){
-    $('jsonInput').value=OUTPUT_PROMPT;
-    msg.className='msg ok'; msg.textContent='瀏覽器擋了自動複製，指令已放進下面的框，請手動全選複製。';
-  }
-};
-$('loadSampleBtn').onclick=()=>{
-  $('jsonInput').value=JSON.stringify(SAMPLE,null,2);
-  msg.className='msg ok'; msg.textContent='這是格式範例，可以照著改，或直接貼 AI 產的 JSON 覆蓋掉。';
-};
-$('applyBtn').onclick=()=>{
-  let raw=$('jsonInput').value.trim();
-  if(!raw){msg.className='msg err';msg.textContent='請先貼上 JSON。';return;}
-  raw=raw.replace(/^```(?:json)?\s*/i,'').replace(/```\s*$/,'').trim();
-  const s=raw.indexOf('{'), e=raw.lastIndexOf('}');
-  if(s>=0&&e>s) raw=raw.slice(s,e+1);
-  try{
-    const d=JSON.parse(raw);
-    if(!d.pairs&&!d.groups&&!d.distribution) throw new Error('缺少 distribution / pairs / groups');
-    DATA=d; isSample=false; algoIdx=0;
-    try{localStorage.setItem(KEY,JSON.stringify(d));}catch(err){}
-    render(d); panel.classList.remove('on'); go(0);
-  }catch(err){
-    msg.className='msg err';
-    msg.textContent='讀不進去：'+err.message+'。請確認貼的是完整 JSON（大括號開頭結尾），或請 AI 重出一次。';
-  }
-};
-$('copyDataBtn').onclick=async()=>{
-  const txt=JSON.stringify(DATA,null,2);
-  try{ await navigator.clipboard.writeText(txt);
-    msg.className='msg ok'; msg.textContent='已複製目前資料。貼到記事本存著，萬一重整了可以貼回來。';
-  }catch(err){ $('jsonInput').value=txt; msg.className='msg ok';
-    msg.textContent='瀏覽器擋了自動複製，資料已放進上面的框，請手動全選複製。'; }
-};
-
-/* 把目前資料寫死進一份新的 HTML 存下來，重整、換電腦都不會掉 */
-$('saveBtn').onclick=()=>{
-  try{
-    const clone=document.documentElement.cloneNode(true);
-    clone.querySelectorAll('#preset').forEach(n=>n.remove());
-    const sc=document.createElement('script');
-    sc.id='preset';
-    sc.textContent='window.__PRESET__='+JSON.stringify(DATA)+';';
-    clone.querySelector('body').insertBefore(sc, clone.querySelector('body').firstChild);
-    const html='<!DOCTYPE html>\n'+clone.outerHTML;
-    const url=URL.createObjectURL(new Blob([html],{type:'text/html;charset=utf-8'}));
-    const a=document.createElement('a');
-    a.href=url; a.download='現場媒合結果（含資料）.html';
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(()=>URL.revokeObjectURL(url),4000);
-    msg.className='msg ok'; msg.textContent='已存到「下載」資料夾：現場媒合結果（含資料）.html。那一份雙擊就能開，資料已經寫在裡面。';
-  }catch(err){
-    msg.className='msg err'; msg.textContent='存檔失敗：'+err.message+'。請改用「複製目前資料」把 JSON 存到記事本。';
-  }
-};
-
-$('clearBtn').onclick=()=>{
-  try{localStorage.removeItem(KEY);}catch(err){}
-  DATA=SAMPLE; isSample=true; algoIdx=0; $('jsonInput').value='';
-  render(SAMPLE); msg.className='msg ok'; msg.textContent='已清除現場資料，回到範例。';
-};
-
-/* ---------- 啟動：優先讀上次載入的現場資料 ---------- */
-(function init(){
-  /* 優先序：存檔版寫死的資料 → 這台貼過的 → 線上 data.json → 範例 */
-  if(window.__PRESET__){
-    DATA=window.__PRESET__; isSample=false; render(DATA);
-    setTimeout(()=>drawStage(VIEW),60); return;
-  }
-  let saved=null;
-  try{saved=localStorage.getItem(KEY);}catch(err){}
-  if(saved){
-    try{DATA=JSON.parse(saved); isSample=false;}catch(err){}
-  }
-  render(DATA);
-  setTimeout(()=>drawStage(VIEW),60);
-  if(saved) return;
-
-  /* 以下是學員自己開手機看的路徑：去撈線上結果 */
-  const q=new URLSearchParams(location.search);
-  /* 線上又還沒有結果時先擋住範例，免得學員看到虛構人名；?demo=1 可強制看範例 */
-  const hosted = location.protocol==='http:' || location.protocol==='https:';
-  const showWaiting = hosted && !q.has('demo');
-  if(showWaiting) $('waiting').classList.add('on');
-
-  function pull(first){
-    return fetch('./data.json?t='+(new Date().getTime()))
-      .then(r=>r.ok?r.json():null)
-      .then(d=>{
-        if(d && (d.algorithms||d.pairs)){
-          DATA=d; isSample=false; algoIdx=0; render(DATA);
-          $('waiting').classList.remove('on');
-          const f=$('demoflag');
-          f.textContent='已載入現場結果'; f.style.display='block';
-          setTimeout(()=>{f.style.display='none';},3500);
-          return true;
-        }
-        return false;
-      })
-      .catch(()=>false);
-  }
-
-  pull(true).then(ok=>{
-    /* 還沒有結果就每 15 秒自己再撈一次，學員不用一直手動重整 */
-    if(!ok && showWaiting){
-      const timer=setInterval(()=>{
-        pull(false).then(done=>{ if(done) clearInterval(timer); });
-      },15000);
-    }
+Object.keys(modeBtns).forEach(k=>{
+  const b=modeBtns[k];
+  b.onclick=()=>activateMode(k);
+  /* 滑鼠移過去：顯示這個算法的核心價值 */
+  b.addEventListener('mouseenter',()=>{
+    tip.innerHTML='<div class="tt-h">'+modeDefs[k].label+'</div><div class="tt-r">'+modeDefs[k].core+'</div>';
+    tip.style.display='block';
+    const r=b.getBoundingClientRect(),tr=tip.getBoundingClientRect();
+    let left=r.left+r.width/2-tr.width/2;
+    left=Math.max(10,Math.min(left,window.innerWidth-tr.width-10));
+    let top=r.top-tr.height-12;if(top<10)top=r.bottom+12;
+    tip.style.left=left+'px';tip.style.top=top+'px';
+    requestAnimationFrame(()=>tip.classList.add('show'));
   });
-})();
+  b.addEventListener('mouseleave',hideTip);
+});
+document.getElementById('resetBtn').onclick=resetSim;
+
+/* ---------- 彈窗（商會模式＝文氏圖／人際與扶輪模式＝成員列表＋接點） ---------- */
+const modal=document.getElementById('modal');
+const mbox=document.getElementById('mbox');
+const personOf=nm=>people.find(p=>p.nm===nm);
+/* 「我」是本頁的 requester；沿用既有 iframe 名片 modal，讓所有媒合結果裡的 requester entry 也可直接開啟 G 網數位名片。 */
+function renderMemberName(nm){
+  if(nm==='我'||nm==='江昱德')return '<button class="person-card-link" type="button" data-card="jiang" title="開啟我的 G 網數位名片">'+nm+'</button>';
+  return nm;
+}
+function wireCardLinks(root){
+  root.querySelectorAll('[data-card="jiang"]').forEach(btn=>{
+    btn.addEventListener('click',e=>{e.stopPropagation();hideTip();openCardModal();});
+  });
+}
+
+function bubbleCol(p,side){
+  let h='<div class="vcol '+side+'"><h5>'+renderMemberName(p.nm)+'｜'+p.ti+'<small>'+p.co+' · '+p.ind+'</small></h5>';
+  p.pts.forEach(t=>{h+='<div class="vb">'+t+'</div>';});
+  return h+'</div>';
+}
+function openModal(gi){
+  if(mode!=='biz'){openGroupModal(gi);return;}
+  const g=smallGroups[gi],ti=typeInfo[g.type];
+  const mem=g.members.map(personOf);
+  let h='<button class="mclose" onclick="closeModal()">✕</button>';
+  h+='<span class="mtype" style="background:'+ti.color+'">'+ti.name+'</span>';
+  h+='<div class="mtitle">'+g.members.join(' × ')+'</div>';
+  h+='<div class="msub">'+ti.desc+'</div>';
+  if(mem.length===2){
+    h+='<div class="venn v2"><div class="vcirc cL"></div><div class="vcirc cR"></div><div class="vcols">';
+    h+=bubbleCol(mem[0],'left');
+    h+='<div class="vmid"><h5>接點<small>兩邊介紹裡都有料</small></h5>';
+    g.joint.forEach(t=>{h+='<div class="vb">'+t+'</div>';});
+    h+='</div>';
+    h+=bubbleCol(mem[1],'right');
+    h+='</div></div>';
+  }else{
+    h+='<div class="venn v3"><div class="vcirc cL"></div><div class="vcirc cM"></div><div class="vcirc cR"></div><div class="vcols">';
+    h+=bubbleCol(mem[0],'left');
+    h+=bubbleCol(mem[1],'left');
+    h+=bubbleCol(mem[2],'right');
+    h+='</div><div class="jointwide">';
+    g.joint.forEach(t=>{h+='<div class="vb" style="border-color:'+ti.color+';background:#fbf3e3;font-weight:700;">'+t+'</div>';});
+    h+='</div></div>';
+  }
+  h+='<div class="mrow"><b>可以聊：</b><span>'+g.talk+'</span></div>';
+  h+='<div class="mrow"><b>建議第一步：</b><span>'+g.step+'</span></div>';
+  mbox.innerHTML=h;
+  wireCardLinks(mbox);
+  modal.classList.add('show');
+}
+function openGroupModal(gi){
+  const g=modeDefs[mode].groups[gi],ti=typeInfo[g.type];
+  const mem=g.members.map(personOf);
+  let h='<button class="mclose" onclick="closeModal()">✕</button>';
+  h+='<span class="mtype" style="background:'+ti.color+'">'+(mode==='renji'?'人際圈':'服務計畫')+'</span>';
+  h+='<div class="mtitle">'+g.title+'</div>';
+  h+='<div class="msub">'+mem.map(p=>p.nm).join('、')+'</div>';
+  h+='<div class="flowlist">';
+  mem.forEach((p,i)=>{
+    h+='<div class="flowitem"><span class="fi-n">'+(i+1)+'</span><div><b>'+renderMemberName(p.nm)+'</b>｜'+p.ti+'<div class="fi-co">'+p.co+' · '+p.ind+'</div></div></div>';
+  });
+  h+='</div>';
+  h+='<div class="mrow" style="background:#fbf3e3"><b>'+(mode==='renji'?'為什麼聊得起來：':'服務接點：')+'</b><span>'+g.joint.join('；')+'</span></div>';
+  h+='<div class="mrow"><b>可以聊：</b><span>'+g.talk+'</span></div>';
+  h+='<div class="mrow"><b>建議第一步：</b><span>'+g.step+'</span></div>';
+  mbox.innerHTML=h;
+  wireCardLinks(mbox);
+  modal.classList.add('show');
+}
+function openCardModal(){
+  let h='<button class="mclose" onclick="closeModal()">\u2715</button>';
+  h+='<span class="mtype" style="background:var(--gold)">\u6703\u54e1\u5206\u8eab \u00b7 \u5b8c\u6574\u4ea4\u6d41\u6a94\u6848\u793a\u7bc4</span>';
+  h+='<div class="mtitle">\u6c5f\u6631\u5fb7\uff5c\u77e5\u8b58\u7ba1\u7406\u6559\u7df4</div>';
+  h+='<div class="msub">\u4e00\u4efd\u5b8c\u6574\u7684\u6703\u54e1\u4ea4\u6d41\u6a94\u6848\u9577\u9019\u6a23\uff1a\u4e0d\u53ea\u6211\u8981\u4ec0\u9ebc\u3001\u6211\u7f3a\u4ec0\u9ebc\u3002</div>';
+  h+='<div class="mrow"><b>\u5c08\u696d\uff1a</b><span>AI \u77e5\u8b58\u7ba1\u7406\u6559\u7df4\u3002\u5e6b\u500b\u4eba\u8207\u7d44\u7e54\u628a\u96b1\u6027\u77e5\u8b58\u63d0\u7149\u6210 AI \u8b80\u5f97\u61c2\u7684\u77e5\u8b58\u5eab\uff1b\u9019\u5834\u5a92\u5408\u7528\u7684\u5206\u8eab\u8cc7\u6599\u683c\u5f0f\uff0c\u5c31\u662f\u6211\u8a2d\u8a08\u7684\u3002</span></div>';
+  h+='<div class="mrow"><b>\u50f9\u503c\u4e3b\u5f35\uff1a</b><span>\u6d41\u6c34\u7684 AI \u5de5\u5177\uff0c\u9435\u6253\u7684\u77e5\u8b58\u5eab\u3002\u5de5\u5177\u4e00\u76f4\u63db\u6c92\u95dc\u4fc2\uff0c\u7d2f\u7a4d\u4e0b\u4f86\u7684\u77e5\u8b58\u8cc7\u7522\u624d\u662f\u4f60\u7684\uff1bAI \u8ca0\u8cac\u8f14\u52a9\u6c7a\u7b56\uff0c\u62cd\u677f\u6c38\u9060\u5728\u4f60\u3002</span></div>';
+  h+='<div class="mrow"><b>\u7406\u5ff5\uff1a</b><span>\u77e5\u8b58\u5982\u679c\u4e0d\u80fd\u50b3\u627f\uff0c\u5c31\u6c92\u6709\u5b58\u5728\u7684\u610f\u7fa9\u3002\u6211\u505a\u7684\u6bcf\u4e00\u6a23\u6771\u897f\uff0c\u90fd\u662f\u70ba\u4e86\u8b93\u77e5\u8b58\u7559\u5f97\u4e0b\u4f86\uff0c\u8b93\u4eba\u8aaa\u51fa\u300c\u539f\u4f86\u6211\u53ef\u4ee5\u300d\u3002</span></div>';
+  h+='<div class="mrow"><b>\u5de5\u4f5c\u7bc0\u594f\uff1a</b><span>\u8ddf AI \u4e00\u8d77\u5feb\u901f\u8fed\u4ee3\uff0c\u505a\u51fa\u4f86\u76f4\u63a5\u5c55\u793a\u771f\u67b6\u69cb\uff1b\u7522\u51fa\u8981\u8b93\u4eba\u8207 AI \u90fd\u770b\u5f97\u61c2\u3001\u597d\u627e\u3001\u597d\u7528\u3001\u597d\u8b80\u3002</span></div>';
+  h+='<div class="mrow"><b>\u60f3\u627e\u7684\u5c0d\u8c61\uff1a</b><span>\u60f3\u5c0e\u5165 AI \u77e5\u8b58\u7ba1\u7406\u7684\u7d44\u7e54\u3001\u6709\u4e00\u8eab\u529f\u592b\u9084\u6c92\u88ab\u6574\u7406\u51fa\u4f86\u7684\u5c08\u5bb6\u8077\u4eba\u3001\u60f3\u5728\u81ea\u5df1\u6d3b\u52d5\u8a66\u6703\u524d\u5a92\u5408\u7684\u4e3b\u8fa6\u65b9\u3002</span></div>';
+  h+='<div class="mrow"><b>\u73fe\u968e\u6bb5\u9700\u6c42\uff1a</b><span>\u627e\u4e00\u5834 20 \u5230 30 \u4eba\u7684\u6d3b\u52d5\u8a66\u884c\u6703\u524d\u5a92\u5408\uff0c\u7d2f\u7a4d\u771f\u5be6\u6848\u4f8b\u3002</span></div>';
+  h+='<div class="mrow"><b>\u9577\u9060\u76ee\u6a19\uff1a</b><span>\u8b93\u6bcf\u500b\u6703\u54e1\u90fd\u6709\u81ea\u5df1\u7684\u77e5\u8b58\u5eab\u8207\u5206\u8eab\uff0c\u5546\u6703\u8b8a\u6210\u6703\u5b78\u7fd2\u7684\u5546\u6703\u3002</span></div>';
+  h+='<div class="mrow" style="background:#fbf3e3"><b>\u70ba\u4ec0\u9ebc\u5beb\u9019\u9ebc\u591a\uff1a</b><span>\u904e\u53bb\u5546\u6703\u5a92\u5408\u53ea\u7b97\u300c\u6211\u8981\u4ec0\u9ebc\u3001\u6211\u7f3a\u4ec0\u9ebc\u300d\uff0c\u56e0\u70ba\u5177\u9ad4\u3001\u597d\u8a08\u7b97\u3002AI \u80fd\u7b97\u7684\u6bd4\u9019\u591a\uff1a\u50f9\u503c\u4e3b\u5f35\u3001\u7406\u5ff5\u3001\u5de5\u4f5c\u7bc0\u594f\u3001\u8208\u8da3\u3001\u9577\u9060\u76ee\u6a19\uff0c\u5168\u90fd\u80fd\u9032\u5a92\u5408\u3002</span></div>';
+  h+='<div class="mrow"><b>\u5ef6\u4f38\u95b1\u8b80\uff1a</b><span><a href="https://jiang-yude.github.io/jiang-card/" target="_blank" rel="noopener" style="color:var(--gold-d);font-weight:800">\ud83e\udeaa \u6578\u4f4d\u540d\u7247 \u2197</a>\u3000<a href="https://jiangyude.com/" target="_blank" rel="noopener" style="color:var(--gold-d);font-weight:800">\ud83d\udcda \u77e5\u8b58\u5b98\u7db2 \u2197</a>\u3000\u4e0b\u9762\u540d\u7247\u53ef\u76f4\u63a5\u4e92\u52d5\uff1a</span></div>';
+  h+='<iframe class="cardframe" src="https://jiang-yude.github.io/jiang-card/" title="\u6c5f\u6631\u5fb7 AI \u6578\u4f4d\u540d\u7247" loading="lazy"></iframe>';
+  mbox.innerHTML=h;
+  modal.classList.add('show');
+}
+function closeModal(){modal.classList.remove('show');}
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+window.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 </script>
 </body>
 </html>
