@@ -318,6 +318,15 @@ details.fold .fold-body h4{margin:14px 0 6px;font-size:1.08rem;}
 .story-stage.done .replay{opacity:1;pointer-events:auto;}
 .mb-note{position:absolute;top:8px;width:100%;text-align:center;font-size:.92rem;color:var(--ink-soft);font-weight:600;}
 .mb-dot.seen{box-shadow:0 0 0 5px rgba(160,129,68,.35);}
+
+/* 手機修正：畫布本來是給投影用的 1040px 座標系，窄螢幕會把名片切掉。
+   改成畫布保底 720px、外層可以左右滑，名片就不會被裁到（2026-08-15 現場實測 375px 抓到）。*/
+@media (max-width:760px){
+  .simwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .stage{min-width:720px}
+  .swipehint{display:block}
+}
+.swipehint{display:none;text-align:center;font-size:.85rem;color:var(--ink-faint);margin:6px 0 0}
 </style>
 <!-- tracking:vercel-analytics -->
 <meta name="robots" content="noindex,nofollow" />
@@ -370,6 +379,7 @@ details.fold .fold-body h4{margin:14px 0 6px;font-size:1.08rem;}
         <button class="btn ghost" id="resetBtn">重置</button>
         <span class="count" id="count"></span>
       </div>
+      <div class="swipehint">👆 手機可以左右滑動看全圖</div>
       <div class="hintline" id="hint"></div>
       <div class="result" id="result"></div>
     </div>
