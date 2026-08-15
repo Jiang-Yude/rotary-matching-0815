@@ -565,8 +565,14 @@ setLegend();
 function place(useCluster){
   const r=stage.getBoundingClientRect();
   simNodes.forEach(n=>{
-    n.el.style.left=((useCluster?n.cx:n.sx)/W*r.width)+'px';
-    n.el.style.top =((useCluster?n.cy:n.sy)/H*r.height)+'px';
+    /* 夾在畫布內：聚集模式的群心座標是照 1040x470 設計的，窄畫布時最右邊那排會凸出去被切掉 */
+    const nw=n.el.offsetWidth||126, nh=n.el.offsetHeight||52;
+    let L=(useCluster?n.cx:n.sx)/W*r.width;
+    let T=(useCluster?n.cy:n.sy)/H*r.height;
+    L=Math.max(4,Math.min(L,r.width-nw-4));
+    T=Math.max(4,Math.min(T,r.height-nh-4));
+    n.el.style.left=L+'px';
+    n.el.style.top =T+'px';
   });
 }
 place(false);
